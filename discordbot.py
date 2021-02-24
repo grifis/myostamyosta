@@ -145,7 +145,7 @@ async def on_message(message):
 		deck_a = random.sample(deck,4)
 		hero = random.choice(character)
 		dh = print(hero, deck_a)
-		await message.channel.send(dh)
+		await message.channel.send(deck_a + hero)
 
 	await bot.process_commands(message)
 
