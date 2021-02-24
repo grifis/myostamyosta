@@ -153,5 +153,57 @@ async def on_message(message):
 async def ping(ctx):
     await ctx.send('pong')
 
+@bot.command()
+async def hello(ctx):
+	def check_message_author(msg):
+		return msg.author == ctx.author
+
+	await ctx.send(f"こんにちは、{ctx.author.name}さん！！")
+	await ctx.send("気分はどうかな？")
+
+	msg = await bot.wait_for('message' , check=check_message_author)
+	await ctx.send(f" 「{msg.content}」という気分なんだね！！！")
+
+@bot.command()
+async def cha(ctx):
+	content = random.choice(character)
+	await ctx.send(content)
+
+@bot.command()
+async def vc(ctx):
+	member = ctx.author
+	if member.voice and member.voice.channel:
+		await ctx.send(f"{ctx.author.name}は「{member.voice.channel.name}」にいるよ！")
+	else:
+		await ctx.send(f"あなたはボイスチャンネルに参加してないよ！！")
+
+@bot.command()
+async def move(ctx, member: discord.Member,
+	voice_channel:discord.VoiceChannel):
+	if not member.voice or not member.voice.channel:
+		await ctx.send("ボイスチャンネルに参加してないよ。")
+		return
+	await member.move_to(voice_channel)
+	await ctx.send(
+		f"{member.name}をボイスチャンネル{voice_channel.name}に移動したよ！")
+	
+@bot.command()
+async def message(ctx, member:discord.Member, content):
+	await ctx.send(f"{member.name}にDMを送信するよ。")
+	await member.send(content=content)
+
+@bot.command()
+async def member_info(ctx):
+	from datetime import timedelta
+	member = ctx.author
+	await ctx.send(
+		f"ユーザー名:{member.name}\n"
+		f"ユーザーID:{member.id}\n"
+		f"Discordを始めた日:{member.created_at + timedelta(hours=9)}\n"
+		f"Guildへの参加日:{member.joined_at + timedelta(hours=9)}\n"
+		f"ステータス:{str(member.status)}\n"
+		f"モバイルからのログイン？:{member.is_on_mobile()}" 
+		)
+
 
 bot.run(token)
