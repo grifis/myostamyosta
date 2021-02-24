@@ -142,10 +142,13 @@ async def on_message(message):
 		await message.channel.send(deck_a)
 
 	if "ランダムヒーローデッキ" in message.content:
-		deck_a = random.sample(deck,4)
-		hero = random.choice(character)
-		dh = print(hero, deck_a)
-		await message.channel.send(deck_a + hero)
+		def random_hero:
+			a = random.sample(deck,4)
+			b = random.choice(character)
+			c = print(a + b)
+			return c
+		
+		await message.channel.send(random_hero)
 		
 
 	await bot.process_commands(message)
