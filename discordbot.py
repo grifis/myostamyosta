@@ -159,12 +159,6 @@ async def member_info(ctx):
 		f"モバイルからのログイン？:{member.is_on_mobile()}" 
 		)
 
-@tasks.loop(seconds=5.0)
-async def notifier(self):
-	print("start_notifier")
-	now = datetime.now()
-	if self.channel:
-		await self.channel.send(
-			f"現在、{now.strftime('%Y/%m/%d %H:%M:%S')}です")
+
 
 bot.run(token)
