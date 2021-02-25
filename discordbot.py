@@ -214,11 +214,14 @@ async def member_info(ctx):
 async def hd(ctx):
 	member = [member.name for member in ctx.author.voice.channel.members]
 	menber_num = len(ctx.author.voice.channel.members)
+	embed.add_field(name="a", value="a")
 	for val in member:
 		hero = random.choice(character)
 		deck_a = random.choices(deck, k=4)
 		deck_a = ('、'.join(deck_a))
-		await ctx.send(f"{val}さんは{hero}を使ってください。デッキは{deck_a}です。")
+		embed.description = f"{val}"
+		embed.set_field_at(0,name=f"{hero}", value=deck_a)
+		await ctx.send(embed=embed)
 
 
 bot.run(token)
