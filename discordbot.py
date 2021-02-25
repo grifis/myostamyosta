@@ -178,7 +178,7 @@ async def hello(ctx):
 @bot.command()
 async def cha(ctx):
 	content = random.choice(character)
-	await ctx.send("{ctx.author.name}さんは{content}を使ってね！")
+	await ctx.send(f"{ctx.author.name}さんは{content}を使ってね！")
 
 @bot.command()
 async def vc(ctx):
