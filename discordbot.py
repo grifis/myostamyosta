@@ -216,6 +216,7 @@ async def member_info(ctx):
 async def hd(ctx):
 	member = [member.name for member in ctx.author.voice.channel.members]
 	menber_num = len(ctx.author.voice.channel.members)
+	embed.clear_fields()
 	embed.add_field(name="a", value="a")
 	for val in member:
 		hero = random.choice(character)
@@ -229,6 +230,7 @@ async def hd(ctx):
 async def rhd(ctx):
 	member = [member.name for member in ctx.author.voice.channel.members]
 	menber_num = len(ctx.author.voice.channel.members)
+	embed.clear_fields()
 	embed.add_field(name="a", value="a")
 	hero = random.choice(character)
 	deck_a = random.choices(deck, k=4)
