@@ -5,21 +5,15 @@ import discord
 import random
 from random import randint
 
-bot = commands.Bot(command_prefix='/')
+intents = discord.Intents.default()
+intents.members = True
+bot = commands.Bot(command_prefix='/', intents=intents)
 token = os.environ['DISCORD_BOT_TOKEN']
 
-
 random_contents = [
-	"みょすたのこと呼んだ...？",
-	"みょすただよ！！",
-	"みょすた参上...!",
-	"みょすたって響きいいよね",
-	"みょすたは不滅！","みょすたんたんめん","みょすたいやき",
-	"みょすたるたるそーす","みょすたっかるび",
-	"みょすたこやき",
-	"みょすたは食べ物だった...？",
-	"みょんみょんみょんみょん",
-	"そろそろみょすたると崩壊してきた？","もしもし、私みょすたさん。今あなたの後ろにいるの。"
+	"みょすたのこと呼んだ...？","みょすただよ！！","みょすた参上...!","みょすたって響きいいよね","みょすたは不滅！","みょすたんたんめん","みょすたいやき",
+	"みょすたるたるそーす","みょすたっかるび","みょすたこやき","みょすたは食べ物だった...？","みょんみょんみょんみょん",
+	"そろそろみょすたると崩壊してきた？","もしもし、私みょすたさん。今あなたの後ろにいるの。","魔法少女みょすた、キミのために戦うよ！"
 ]
 
 character = [
@@ -216,6 +210,15 @@ async def member_info(ctx):
 		f"モバイルからのログイン？:{member.is_on_mobile()}" 
 		)
 
+@bot.command()
+async def hd(ctx):
+	member = [member.name for member in ctx.author.voice.channel.members]
+	menber_num = len(ctx.author.voice.channel.members)
+	for val in member:
+		hero = random.choice(character)
+		deck_a = random.choices(deck, k=4)
+		deck_a = ('、'.join(deck_a))
+		await ctx.send(f"{val}さんは{hero}を使ってください。デッキは{deck_a}です。")
 
 
 bot.run(token)
