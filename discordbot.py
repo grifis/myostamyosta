@@ -3,6 +3,7 @@ import os
 import traceback
 import discord
 import random
+from random import randint
 
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
