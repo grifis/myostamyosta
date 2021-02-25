@@ -233,7 +233,7 @@ async def rhd(ctx):
 	hero = random.choice(character)
 	deck_a = random.choices(deck, k=4)
 	deck_a = ('、'.join(deck_a))
-	embed.description = f"{val}"
+	embed.description = f"{ctx.author.name}"
 	embed.set_field_at(0,name=f"{hero}", value=deck_a)
 	await ctx.send(embed=embed)
 
