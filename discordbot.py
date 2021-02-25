@@ -14,11 +14,11 @@ random_contents = [
 	"みょすた参上...!",
 	"みょすたって響きいいよね",
 	"みょすたは不滅！","みょすたんたんめん","みょすたいやき",
-	"みょすたるたるそーす","みょすたっかるび"
+	"みょすたるたるそーす","みょすたっかるび",
 	"みょすたこやき",
 	"みょすたは食べ物だった...？",
 	"みょんみょんみょんみょん",
-	"そろそろみょすたると崩壊してきた？"
+	"そろそろみょすたると崩壊してきた？","もしもし、私みょすたさん。今あなたの後ろにいるの。"
 ]
 
 character = [
@@ -44,6 +44,64 @@ async def on_command_error(ctx, error):
     orig_error = getattr(error, "original", error)
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
+
+@bot.event
+async def on_ready():
+	print("on_ready")
+
+
+def hand_to_int(hand):
+    """
+    グー: 0, チョキ: 1, パー: 2 とする
+    handはカタカナ，ひらがな表記，数字に対応する
+    """
+    hand_int = None
+    if hand in ["グー", "ぐー", "0"]:
+        hand_int = 0
+    elif hand in ["チョキ", "ちょき", "1"]:
+        hand_int = 1
+    elif hand in ["パー", "ぱー", "2"]:
+        hand_int = 2
+
+    return hand_int
+
+
+def get_player_result(player_hand, bot_hand):
+    """
+    勝利: 1, 敗北: 0, ひきわけ: 2 とする
+    result_table[player_hand][bot_hand]で結果がわかるようにする
+    """
+    result_table = [
+        [2, 1, 0],
+        [0, 2, 1],
+        [1, 0, 2]
+    ]
+    return result_table[player_hand][bot_hand]
+
+
+@bot.command()
+async def jyanken(ctx, hand):
+    hand_emoji_list = [":fist:", ":v:", ":hand_splayed:"]
+
+    player_hand = hand_to_int(hand)
+    if player_hand is None:
+        await ctx.send("ずるはしちゃダメだよ！もう一度やり直してください！！")
+        return
+
+    bot_hand = randint(0, 2)
+
+    await ctx.send(
+        f"あなた: {hand_emoji_list[player_hand]}\n"
+        f"Bot: {hand_emoji_list[bot_hand]}"
+    )
+
+    result = get_player_result(player_hand, bot_hand)
+    if result == 0:
+        await ctx.send("YOU LOSE  私の勝ち。なんで負けたか明日まで考えておいてください。そしたら何かが見えてくるはずです。ほな頂きます。")
+    elif result == 1:
+        await ctx.send("おめでとう！君の勝ちだよ！！:tada:")
+    else:
+        await ctx.send("あいこ！")
 
 @bot.event
 async def on_ready():
