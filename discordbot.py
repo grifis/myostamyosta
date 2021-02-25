@@ -151,7 +151,7 @@ async def on_message(message):
 		deck_a = random.choices(deck, k=4)
 		await message.channel.send(deck_a)
 
-	if "ヒーローデッキ"　in messahe.content:
+	if "ヒーローデッキ" in message.content:
 		hero = random.choice(character)
 		deck_a = random.choices(deck, k=4)
 		await message.channel.send(hero)
