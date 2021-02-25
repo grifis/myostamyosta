@@ -9,6 +9,8 @@ intents = discord.Intents.default()
 intents.members = True
 bot = commands.Bot(command_prefix='/', intents=intents)
 token = os.environ['DISCORD_BOT_TOKEN']
+embed = discord.Embed()
+embed.color = discord.Color.blue()
 
 random_contents = [
 	"みょすたのこと呼んだ...？","みょすただよ！！","みょすた参上...!","みょすたって響きいいよね","みょすたは不滅！","みょすたんたんめん","みょすたいやき",
