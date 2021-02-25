@@ -225,5 +225,18 @@ async def hd(ctx):
 		embed.set_field_at(0,name=f"{hero}", value=deck_a)
 		await ctx.send(embed=embed)
 
+@bot.command()
+async def rhd(ctx):
+	member = [member.name for member in ctx.author.voice.channel.members]
+	menber_num = len(ctx.author.voice.channel.members)
+	embed.add_field(name="a", value="a")
+	hero = random.choice(character)
+	deck_a = random.choices(deck, k=4)
+	deck_a = ('、'.join(deck_a))
+	embed.description = f"{val}"
+	embed.set_field_at(0,name=f"{hero}", value=deck_a)
+	await ctx.send(embed=embed)
+
+
 
 bot.run(token)
