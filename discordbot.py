@@ -12,12 +12,6 @@ token = os.environ['DISCORD_BOT_TOKEN']
 embed = discord.Embed()
 embed.color = discord.Color.blue()
 
-random_contents = [
-	"みょすたのこと呼んだ...？","みょすただよ！！","みょすた参上...!","みょすたって響きいいよね","みょすたは不滅！","みょすたんたんめん","みょすたいやき",
-	"みょすたるたるそーす","みょすたっかるび","みょすたこやき","みょすたは食べ物だった...？","みょんみょんみょんみょん",
-	"そろそろみょすたると崩壊してきた？","もしもし、私みょすたさん。今あなたの後ろにいるの。","魔法少女みょすた、キミのために戦うよ！"
-]
-
 character = [
 	"アタリ","ジャスティス","リリカ","ノホ","忠臣","ジャンヌ","マルコス","ルチアーノ","voidoll","まとい","ソル","ディズィー","グスタフ","テスラ","ミク",
 	"ヴィオレッタ","コクリコ","リュウ","春麗","マリア","アダム","１３","勇者","エミリア","レム","カイ","メグメグ","リン","レン","イスタカ","ザクレイ",
@@ -216,29 +210,29 @@ async def member_info(ctx):
 async def hd(ctx):
 	member = [member.name for member in ctx.author.voice.channel.members]
 	menber_num = len(ctx.author.voice.channel.members)
-	embed.clear_fields()
-	embed.add_field(name="a", value="a")
 	for val in member:
 		hero = random.choice(character)
 		deck_a = random.choices(deck, k=4)
 		deck_a = ('、'.join(deck_a))
+		embed.clear_fields()
 		embed.description = f"{val}"
-		embed.set_field_at(0,name=f"{hero}", value=deck_a)
+		embed.add_field(name=f"{hero}", value=deck_a)
 		await ctx.send(embed=embed)
 
 @bot.command()
 async def rhd(ctx):
 	member = [member.name for member in ctx.author.voice.channel.members]
 	menber_num = len(ctx.author.voice.channel.members)
-	embed.clear_fields()
-	embed.add_field(name="a", value="a")
 	hero = random.choice(character)
 	deck_a = random.choices(deck, k=4)
 	deck_a = ('、'.join(deck_a))
+	embed.clear_fields()
 	embed.description = f"{ctx.author.name}"
-	embed.set_field_at(0,name=f"{hero}", value=deck_a)
+	embed.add_field(name=f"{hero}", value=deck_a)
 	await ctx.send(embed=embed)
 
 
-
+bot.load_extension("cogs.greet")
+bot.load_extension("cogs.notify")
+bot.load_extension("cogs.reply")
 bot.run(token)
