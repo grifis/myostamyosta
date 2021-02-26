@@ -152,17 +152,6 @@ async def ping(ctx):
     await ctx.send('pong')
 
 @bot.command()
-async def hello(ctx):
-	def check_message_author(msg):
-		return msg.author == ctx.author
-
-	await ctx.send(f"こんにちは、{ctx.author.name}さん！！")
-	await ctx.send("気分はどうかな？")
-
-	msg = await bot.wait_for('message' , check=check_message_author)
-	await ctx.send(f" 「{msg.content}」という気分なんだね！！！")
-
-@bot.command()
 async def cha(ctx):
 	content = random.choice(character)
 	await ctx.send(f"{ctx.author.name}さんは{content}を使ってね！")
@@ -229,8 +218,6 @@ async def rhd(ctx):
 	embed.description = f"{ctx.author.name}"
 	embed.set_field_at(0,name=f"{hero}", value=deck_a)
 	await ctx.send(embed=embed)
-	
+
 bot.load_extension("cogs.greet")
-bot.load_extension("cogs.notify")
-bot.load_extension("cogs.reply")
 bot.run(token)
