@@ -229,5 +229,8 @@ async def rhd(ctx):
 	embed.description = f"{ctx.author.name}"
 	embed.set_field_at(0,name=f"{hero}", value=deck_a)
 	await ctx.send(embed=embed)
-
+	
+bot.load_extension("cogs.greet")
+bot.load_extension("cogs.notify")
+bot.load_extension("cogs.reply")
 bot.run(token)
