@@ -104,51 +104,6 @@ async def on_command_error(ctx, error):
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
 
-@bot.event
-async def on_message(message):
-
-
-	msgclient = message.guild.voice_client
-
-	if message.guild.voice_client:
-		print(message.content)
-		creat_WAV(message.content)
-		source = discord.FFmpegPCMAudio("output.wav")
-		message.guild.voice_client.play(source)
-
-	if message.author == bot.user:
-		#botからのメッセージには反応しない
-		#この判定をしないと無限ループが起きる
-		return
-
-	if "みょすた" in message.content:
-		content = random.choice(random_contents)
-		await message.channel.send(content)
-
-
-	if "ダイキュリー" in message.content:
-		await message.channel.send("ダイキュリーアイス")
-
-	if "ランダムヒーロー" in message.content:
-		hero = random.choice(character)
-		await message.channel.send(hero)
-
-	if "ランダムアタッカー" in message.content:
-		hero_a = random.choice(attacker)
-		await message.channel.send(hero_a)
-
-	if "ランダムデッキ" in message.content:
-		deck_a = random.choices(deck, k=4)
-		await message.channel.send(deck_a)
-
-	if "ヒーローデッキ" in message.content:
-		hero = random.choice(character)
-		deck_a = random.choices(deck, k=4)
-		await message.channel.send(hero)
-		await message.channel.send(deck_a)
-		
-
-	await bot.process_commands(message)
 
 @bot.command()
 async def ping(ctx):
