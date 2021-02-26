@@ -220,5 +220,4 @@ async def rhd(ctx):
 	await ctx.send(embed=embed)
 
 bot.load_extension("cogs.greet")
-bot.load_extension("cogs.notify")
 bot.run(token)
