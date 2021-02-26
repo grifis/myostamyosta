@@ -113,15 +113,6 @@ async def on_command_error(ctx, error):
 @bot.event
 async def on_message(message):
 
-
-	msgclient = message.guild.voice_client
-
-	if message.guild.voice_client:
-		print(message.content)
-		creat_WAV(message.content)
-		source = discord.FFmpegPCMAudio("output.wav")
-		message.guild.voice_client.play(source)
-
 	if message.author == bot.user:
 		#botからのメッセージには反応しない
 		#この判定をしないと無限ループが起きる
