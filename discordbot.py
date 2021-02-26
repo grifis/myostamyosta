@@ -12,6 +12,12 @@ token = os.environ['DISCORD_BOT_TOKEN']
 embed = discord.Embed()
 embed.color = discord.Color.blue()
 
+random_contents = [
+	"みょすたのこと呼んだ...？","みょすただよ！！","みょすた参上...!","みょすたって響きいいよね","みょすたは不滅！","みょすたんたんめん","みょすたいやき",
+	"みょすたるたるそーす","みょすたっかるび","みょすたこやき","みょすたは食べ物だった...？","みょんみょんみょんみょん",
+	"そろそろみょすたると崩壊してきた？","もしもし、私みょすたさん。今あなたの後ろにいるの。","魔法少女みょすた、キミのために戦うよ！"
+]
+
 character = [
 	"アタリ","ジャスティス","リリカ","ノホ","忠臣","ジャンヌ","マルコス","ルチアーノ","voidoll","まとい","ソル","ディズィー","グスタフ","テスラ","ミク",
 	"ヴィオレッタ","コクリコ","リュウ","春麗","マリア","アダム","１３","勇者","エミリア","レム","カイ","メグメグ","リン","レン","イスタカ","ザクレイ",
@@ -104,6 +110,51 @@ async def on_command_error(ctx, error):
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
 
+@bot.event
+async def on_message(message):
+
+
+	msgclient = message.guild.voice_client
+
+	if message.guild.voice_client:
+		print(message.content)
+		creat_WAV(message.content)
+		source = discord.FFmpegPCMAudio("output.wav")
+		message.guild.voice_client.play(source)
+
+	if message.author == bot.user:
+		#botからのメッセージには反応しない
+		#この判定をしないと無限ループが起きる
+		return
+
+	if "みょすた" in message.content:
+		content = random.choice(random_contents)
+		await message.channel.send(content)
+
+
+	if "ダイキュリー" in message.content:
+		await message.channel.send("ダイキュリーアイス")
+
+	if "ランダムヒーロー" in message.content:
+		hero = random.choice(character)
+		await message.channel.send(hero)
+
+	if "ランダムアタッカー" in message.content:
+		hero_a = random.choice(attacker)
+		await message.channel.send(hero_a)
+
+	if "ランダムデッキ" in message.content:
+		deck_a = random.choices(deck, k=4)
+		await message.channel.send(deck_a)
+
+	if "ヒーローデッキ" in message.content:
+		hero = random.choice(character)
+		deck_a = random.choices(deck, k=4)
+		await message.channel.send(hero)
+		await message.channel.send(deck_a)
+		
+
+	await bot.process_commands(message)
 
 @bot.command()
 async def ping(ctx):
@@ -165,29 +216,29 @@ async def member_info(ctx):
 async def hd(ctx):
 	member = [member.name for member in ctx.author.voice.channel.members]
 	menber_num = len(ctx.author.voice.channel.members)
+	embed.clear_fields()
+	embed.add_field(name="a", value="a")
 	for val in member:
 		hero = random.choice(character)
 		deck_a = random.choices(deck, k=4)
 		deck_a = ('、'.join(deck_a))
-		embed.clear_fields()
 		embed.description = f"{val}"
-		embed.add_field(name=f"{hero}", value=deck_a)
+		embed.set_field_at(0,name=f"{hero}", value=deck_a)
 		await ctx.send(embed=embed)
 
 @bot.command()
 async def rhd(ctx):
 	member = [member.name for member in ctx.author.voice.channel.members]
 	menber_num = len(ctx.author.voice.channel.members)
+	embed.clear_fields()
+	embed.add_field(name="a", value="a")
 	hero = random.choice(character)
 	deck_a = random.choices(deck, k=4)
 	deck_a = ('、'.join(deck_a))
-	embed.clear_fields()
 	embed.description = f"{ctx.author.name}"
-	embed.add_field(name=f"{hero}", value=deck_a)
+	embed.set_field_at(0,name=f"{hero}", value=deck_a)
 	await ctx.send(embed=embed)
 
 
-bot.load_extension("cogs.greet")
-bot.load_extension("cogs.notify")
-bot.load_extension("cogs.reply")
+
 bot.run(token)
