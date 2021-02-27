@@ -210,8 +210,6 @@ async def hd(ctx):
 
 @bot.command()
 async def rhd(ctx):
-	member = [member.name for member in ctx.author.voice.channel.members]
-	menber_num = len(ctx.author.voice.channel.members)
 	embed.clear_fields()
 	embed.add_field(name="a", value="a")
 	hero = random.choice(character)
