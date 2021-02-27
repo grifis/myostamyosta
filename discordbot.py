@@ -194,6 +194,8 @@ async def member_info(ctx):
 
 @bot.command()
 async def hd(ctx):
+	if ctx.author.voice is None:
+		await ctx.send("vcに入ってないから実行できないよ！！！")
 	member = [member.name for member in ctx.author.voice.channel.members]
 	menber_num = len(ctx.author.voice.channel.members)
 	embed.clear_fields()
