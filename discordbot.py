@@ -193,7 +193,7 @@ async def member_info(ctx):
 		)
 
 @bot.command()
-async def hd(ctx):
+async def ahd(ctx):
 	if ctx.author.voice is None:
 		await ctx.send("vcに入ってないから実行できないよ！！！")
 	member = [member.name for member in ctx.author.voice.channel.members]
@@ -202,21 +202,35 @@ async def hd(ctx):
 	embed.add_field(name="a", value="a")
 	for val in member:
 		hero = random.choice(character)
-		deck_a = random.choices(deck, k=4)
-		deck_a = ('、'.join(deck_a))
+		deck = random.choices(card, k=4)
+		deck = ('、'.join(deck))
 		embed.description = f"{val}"
-		embed.set_field_at(0,name=f"{hero}", value=deck_a)
+		embed.set_field_at(0,name=f"{hero}", value=deck)
 		await ctx.send(embed=embed)
 
 @bot.command()
-async def rhd(ctx):
-	embed.clear_fields()
-	embed.add_field(name="a", value="a")
+async def hd(ctx):
 	hero = random.choice(character)
-	deck_a = random.choices(deck, k=4)
-	deck_a = ('、'.join(deck_a))
+	deck = random.choices(card, k=4)
+	deck = ('、'.join(deck))
+	embed.clear_fields()
 	embed.description = f"{ctx.author.name}"
-	embed.set_field_at(0,name=f"{hero}", value=deck_a)
+	embed.add_field(name=f"{hero}", value=deck)
+	await ctx.send(embed=embed)
+
+@bot.command()
+async def hero(ctx):
+	hero = random.choice(character)
+	embed.clear_fields()
+	embed.add_field(name=f"{ctx.author.name}", value=f"{hero}")
+	await ctx.send(embed=embed)
+
+@bot.command()
+async def deck(ctx):
+	deck = random.choices(card, k=4)
+	deck = ('、'.join(deck))
+	embed.clear_fields()
+	embed.add_field(name=f"{ctx.author.name}", value=f"{deck}")
 	await ctx.send(embed=embed)
 
 bot.load_extension("cogs.greet")
