@@ -204,7 +204,8 @@ async def ahd(ctx):
 		hero = random.choice(character)
 		deck = random.choices(card, k=4)
 		deck = ('、'.join(deck))
-		embed.description = f"{val}"
+		embed.title = f"{val}"
+		embed.description = None
 		embed.set_field_at(0,name=f"{hero}", value=deck)
 		await ctx.send(embed=embed)
 
@@ -214,24 +215,28 @@ async def hd(ctx):
 	deck = random.choices(card, k=4)
 	deck = ('、'.join(deck))
 	embed.clear_fields()
-	embed.description = f"{ctx.author.name}"
+	embed.title = f"{ctx.author.name}"
+	embed.description = None
 	embed.add_field(name=f"{hero}", value=deck)
 	await ctx.send(embed=embed)
 
 @bot.command()
 async def hero(ctx):
-	hero = random.choice(character)
 	embed.clear_fields()
-	embed.add_field(name=f"{ctx.author.name}", value=f"{hero}")
+	hero = random.choice(character)
+	embed.title = f"{ctx.author.name}"
+	embed.description = f"{hero}"
 	await ctx.send(embed=embed)
 
 @bot.command()
 async def deck(ctx):
+	embed.clear_fields()
 	deck = random.choices(card, k=4)
 	deck = ('、'.join(deck))
-	embed.clear_fields()
-	embed.add_field(name=f"{ctx.author.name}", value=f"{deck}")
+	embed.title = f"{ctx.author.name}"
+	embed.description = f"{deck}"
 	await ctx.send(embed=embed)
+
 
 bot.load_extension("cogs.greet")
 bot.run(token)
