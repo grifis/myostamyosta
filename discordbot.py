@@ -237,6 +237,15 @@ async def deck(ctx):
 	embed.description = f"{deck}"
 	await ctx.send(embed=embed)
 
+@bot.command()
+async def myosta(ctx):
+	embed.clear_fields()
+	embed.title = "みょすたbotの使い方"
+	embed.add_field(name="/hero", value="ランダムにヒーローを指定するよ")
+	embed.add_field(name="/deck", value="ランダムにデッキを指定するよ")
+	embed.add_field(name="/hd", value="ランダムにヒーローとデッキを指定するよ")
+	embed.add_field(name="/ahd", value="ボイスチャットに入ってる人のデッキとヒーローをランダムに指定するよ")
+	await ctx.send(embed=embed)
 
-bot.load_extension("cogs.greet")
+bot.oad_extension("cogs.greet")
 bot.run(token)
