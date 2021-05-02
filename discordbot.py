@@ -169,19 +169,8 @@ async def on_message(message):
 		deck_a = random.choices(deck, k=4)
 		await message.channel.send(hero)
 		await message.channel.send(deck_a)
-        
-    if "スロット" in message.content:
-        kakuritu = random.randint(1, 25)
-        slot_list = ['\U00002660', '\U00002663', '\U00002665', '\U00002666', ':seven:']
-        A = random.choice(slot_list)
-        B = random.choice(slot_list)
-        C = random.choice(slot_list)
-        if int(kakuritu) == int(1):
-            await message.channel.send("ボーナス確定！！！")
-            await asyncio.sleep(3)
-            await message.channel.send(':seven: :seven: :seven:')
-        else:
-            await message.channel.send("%s%s%s" % (A, B, C))
+
+    
 		
 
 	await bot.process_commands(message)
