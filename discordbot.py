@@ -176,6 +176,20 @@ async def on_message(message):
 	await bot.process_commands(message)
 
 @bot.command()
+async def slot(ctx):
+    kakuritu = random.randint(1, 25)
+    slot_list = ['\U00002660', '\U00002663', '\U00002665', '\U00002666', ':seven:']
+    A = random.choice(slot_list)
+    B = random.choice(slot_list)
+    C = random.choice(slot_list)
+    if int(kakuritu) == int(1):
+        await ctx.send("ボーナス確定！！！")
+        await asyncio.sleep(3)
+        await ctx.send(':seven: :seven: :seven:')
+    else:
+        await ctx.send("%s%s%s" % (A, B, C))
+
+@bot.command()
 async def ping(ctx):
     await ctx.send('pong')
 
