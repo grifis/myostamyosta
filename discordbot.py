@@ -178,7 +178,7 @@ async def on_message(message):
 
 @bot.command()
 async def slot(ctx):
-    kakuritu = random.randint(1, 25)
+    kakuritu = random.randint(1, 15)
     slot_list = ['\U00002660', '\U00002663', '\U00002665', '\U00002666', ':seven:']
     A = random.choice(slot_list)
     B = random.choice(slot_list)
