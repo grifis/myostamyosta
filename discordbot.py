@@ -5,6 +5,7 @@ import discord
 import random
 from random import randint
 import asyncio
+import numpy as np
 
 intents = discord.Intents.default()
 intents.members = True
@@ -70,6 +71,29 @@ def omikuji_result():
         return "超大吉だよ！おめでとう！確率はなんと0.17%だよ！"
     else:
         return "大凶"
+
+@bot.command()
+async def kuji(ctx, num):
+    number_list = list(range(1, int(num)))
+    for n in number_list:
+        dice = list(range(1, 8))
+        kakuritu = np.random.choice(
+            dice, p=[0.0000001, 0.0000002, 0.00001, 0.0001, 0.01, 0.1, 0.8898897]
+        )
+        if kakuritu == 1:
+            await ctx.send("1等！５億円！！")
+        elif kakuritu == 2:
+            await ctx.send("2等！2000万円！！")
+        elif kakuritu == 3:
+            await ctx.send("3等！100万円！！")
+        elif kakuritu == 4:
+            await ctx.send("4等！5万円！！")
+        elif kakuritu == 5:
+            await ctx.send("5等！3000円！！")
+        elif kakuritu == 6:
+            await ctx.send("6等！300円")
+        elif kakuritu == 7:
+            await ctx.send("残念！ハズレだよ！")
 
 def hand_to_int(hand):
     """
