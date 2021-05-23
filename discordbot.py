@@ -5,7 +5,6 @@ import discord
 import random
 from random import randint
 import asyncio
-import numpy as np
 
 intents = discord.Intents.default()
 intents.members = True
