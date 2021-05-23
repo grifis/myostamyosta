@@ -73,8 +73,8 @@ def omikuji_result():
         return "大凶"
 
 @bot.command()
-async def kuji(ctx, num):
-    number_list = list(range(1, int(num)))
+async def kuji(ctx, num = 1):
+    number_list = list(range(int(num)))
     for n in number_list:
         dice = list(range(1, 8))
         kakuritu = np.random.choice(
