@@ -177,9 +177,6 @@ async def on_message(message):
 	if "ダイキュリー" in message.content:
 		await message.channel.send("ダイキュリーアイス")
 
-    if "さくらだ" in message.content:
-        await message.channel.send("さくらださんやっほー！！")
-
 	if "ランダムヒーロー" in message.content:
 		hero = random.choice(character)
 		await message.channel.send(hero)
