@@ -30,7 +30,7 @@ character = [
 ]
 
 attacker = [
-	"ノホ", "忠臣", "マルコス", "ソル＝バッドガイ", "リュウ", "アダム＝ユーリエフ", "レム", "カイ=キスク", 
+	"ノホ", "忠臣", "マルコス", "ソル＝バッドガイ", "リュウ", "アダム＝ユーリエフ", "レム", "カイ=キスク",
 	"リヴァイ", "デビルミント鬼龍　デルミン", "ヴィーナス　ポロロッチョ", "マリア＝s＝レオンブルク",
 	"セイバーオルタ", "ルルカ", "アイス・ヴァレンシュタイン", "狐ヶ咲　甘色", "ノクティス",
 ]
@@ -173,6 +173,9 @@ async def on_message(message):
 		content = random.choice(random_contents)
 		await message.channel.send(content)
 
+	if "だーこ" in message.content:
+		await message.channel.send("さくらだは世を忍ぶ仮の姿！本名はだーこなのだ！")
+
 
 	if "さくらだ" in message.content:
 		await message.channel.send("さくらださんヤッホー!")
@@ -195,8 +198,8 @@ async def on_message(message):
 		await message.channel.send(hero)
 		await message.channel.send(deck_a)
 
-    
-		
+
+
 
 	await bot.process_commands(message)
 
@@ -240,7 +243,7 @@ async def move(ctx, member: discord.Member,
 	await member.move_to(voice_channel)
 	await ctx.send(
 		f"{member.name}をボイスチャンネル{voice_channel.name}に移動したよ！")
-	
+
 @bot.command()
 async def message(ctx, member:discord.Member, content):
 	await ctx.send(f"{member.name}にDMを送信するよ。")
@@ -256,7 +259,7 @@ async def member_info(ctx):
 		f"Discordを始めた日:{member.created_at + timedelta(hours=9)}\n"
 		f"Guildへの参加日:{member.joined_at + timedelta(hours=9)}\n"
 		f"ステータス:{str(member.status)}\n"
-		f"モバイルからのログイン？:{member.is_on_mobile()}" 
+		f"モバイルからのログイン？:{member.is_on_mobile()}"
 		)
 
 @bot.command()
@@ -326,7 +329,7 @@ class MakeTeam:
 
     def set_mem(self, ctx):
         state = ctx.author.voice # コマンド実行者のVCステータスを取得
-        if state is None: 
+        if state is None:
             return False
 
         self.channel_mem = [i.name for i in state.channel.members] # VCメンバリスト取得
@@ -337,7 +340,7 @@ class MakeTeam:
     def make_party_num(self, ctx, party_num, remainder_flag='false'):
         team = []
         remainder = []
-        
+
         if self.set_mem(ctx) is False:
             return self.vc_state_err
 
@@ -351,14 +354,14 @@ class MakeTeam:
         # チーム分けで余るメンバーを取得
         if remainder_flag == 'true':
             remainder_num = self.mem_len % party_num
-            if remainder_num != 0: 
+            if remainder_num != 0:
                 for r in range(remainder_num):
                     remainder.append(self.channel_mem.pop())
                 team.append("=====余り=====")
                 team.extend(remainder)
 
         # チーム分け
-        for i in range(party_num): 
+        for i in range(party_num):
             team.append("=====チーム"+str(i+1)+"=====")
             team.extend(self.channel_mem[i:self.mem_len:party_num])
 
@@ -384,14 +387,14 @@ class MakeTeam:
 
         # チーム分けで余るメンバーを取得
         remainder_num = self.mem_len % party_num
-        if remainder_num != 0: 
+        if remainder_num != 0:
             for r in range(remainder_num):
                 remainder.append(self.channel_mem.pop())
             team.append("=====余り=====")
             team.extend(remainder)
 
         # チーム分け
-        for i in range(party_num): 
+        for i in range(party_num):
             team.append("=====チーム"+str(i+1)+"=====")
             team.extend(self.channel_mem[i:self.mem_len:party_num])
 
