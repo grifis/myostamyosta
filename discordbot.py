@@ -195,9 +195,6 @@ async def on_message(message):
 		await message.channel.send(hero)
 		await message.channel.send(deck_a)
 
-    if "さくらだ" in message.content:
-        await message.channel.send("さくらださんやっほー！！！")
-
     
 		
 
