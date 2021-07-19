@@ -82,7 +82,7 @@ def omikuji_result():
 @bot.command()
 async def batu(ctx):
     word = random.choice(batugame)
-    player = ctx.author.nam
+    player = ctx.author.name
     await ctx.send(f"{player}さんは{word}です")
 
 @bot.command()
