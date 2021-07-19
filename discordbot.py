@@ -198,9 +198,7 @@ async def on_message(message):
 		await message.channel.send(hero)
 		await message.channel.send(deck_a)
 
-    if "ばつげーむ" in message.content:
-        word = random.choice(batugame)
-        await message.channel.send(f"罰ゲームは「{word}」です")
+
 
 
 
