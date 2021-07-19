@@ -92,6 +92,7 @@ async def batu(ctx):
 async def batu_list(ctx):
     for word in batugame:
         await ctx.send(f"{word}")
+    await ctx.send("以上だよ")
 
 
 
