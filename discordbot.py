@@ -82,9 +82,13 @@ def omikuji_result():
 
 @bot.command()
 async def batu(ctx):
-    word = random.choice(batugame)
-    player = ctx.author.name
-    await ctx.send(f"{player}さんは{word}です")
+    embed.clear_fields()
+    hero = random.choice(batugame)
+    embed.title = f"{ctx.author.name}"
+    embed.description = f"{hero}"
+    await ctx.send(embed=embed)
+
+
 
 @bot.command()
 async def kuji(ctx, num = 1):
