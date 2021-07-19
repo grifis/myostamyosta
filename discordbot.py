@@ -198,9 +198,7 @@ async def on_message(message):
 		await message.channel.send(hero)
 		await message.channel.send(deck_a)
 
-    if "ばつげーむ" in message.content:
-        content = random.choice(random_contents)
-        await message.channel.send(content)
+
 
 
 	await bot.process_commands(message)
