@@ -335,7 +335,6 @@ async def myosta(ctx):
 	embed.add_field(name="/team", value="ボイスチャットに入ってる人をチーム分けしてくれるよ")
 	embed.add_field(name="/team_norem", value="基本的には/teamと同じだけど、こっちは余りが出ないよ")
 	embed.add_field(name="/member_info", value="コマンドを打った人の情報を表示するよ")
-    embed.add_field(name="/batu", value="みょすたが罰ゲームを教えてくれるよ")
 	await ctx.send(embed=embed)
 
 class MakeTeam:
