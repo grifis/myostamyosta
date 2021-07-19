@@ -341,13 +341,7 @@ async def myosta(ctx):
 async def myostaa(ctx):
     embed.clear_fields()
     embed.title = "みょすたbotの使い方"
-    embed.add_field(name="/hero", value="ランダムにヒーローを指定するよ")
-    embed.add_field(name="/deck", value="ランダムにデッキを指定するよ")
-    embed.add_field(name="/hd", value="ランダムにヒーローとデッキを指定するよ")
-    embed.add_field(name="/ahd", value="ボイスチャットに入ってる人のデッキとヒーローをランダムに指定するよ")
-    embed.add_field(name="/team", value="ボイスチャットに入ってる人をチーム分けしてくれるよ")
-    embed.add_field(name="/team_norem", value="基本的には/teamと同じだけど、こっちは余りが出ないよ")
-    embed.add_field(name="/member_info", value="コマンドを打った人の情報を表示するよ")
+    embed.add_field(name="/hero", value="ランダムにヒーローをしているするよ")
     await ctx.send(embed=embed)
 
 class MakeTeam:
