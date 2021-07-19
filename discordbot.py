@@ -90,9 +90,8 @@ async def batu(ctx):
 
 @bot.command()
 async def batu_list(ctx):
-    for word in batugame:
-        await ctx.send(f"{word}")
-    await ctx.send("以上だよ")
+    word_list = "\n".join(batugame)
+    await ctx.send(word_list)
 
 
 
