@@ -18,7 +18,7 @@ batugame = [
     "自身の良いところを熱く語る", "語尾に「にゃん」と言う", "一発ネタ", "語尾にぴょんと言う",
     "ギルドのメンバーで付き合うなら誰？", "テンションを上げる", "ミッキー口調になる", "恥ずかしいor面白い話"
     "厨二病キャラになる", "メンバー1名を褒める", "一曲歌う", "ギルドの中で嫌いな人は？", "勝者の誰かに嘘告白"
-    "陽キャになる", "初恋の人の名前"
+    "陽キャになる", "初恋の人の名前", "黒歴史"
 ]
 
 random_contents = [
@@ -200,7 +200,7 @@ async def on_message(message):
 
     if "ばつげーむ" in message.content:
         word = random.choice(batugame)
-        await message.channel.send(f"{ctx.author.name}さんは「{word}」です")
+        await message.channel.send(f"罰ゲームは「{word}」です")
 
 
 
