@@ -90,7 +90,11 @@ async def batu(ctx):
 
 @bot.command()
 async def batu_list(ctx):
-    await ctx.send(batugame)
+    embed.clear_fields()
+    embed.title = "罰ゲーム一覧"
+    for i in batugame:
+        embed.description = f"i"
+    await ctx.send(embed=embed)
 
 
 
