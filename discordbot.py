@@ -88,6 +88,10 @@ async def batu(ctx):
     embed.description = f"{hero}"
     await ctx.send(embed=embed)
 
+@bot.command()
+async def batu_list(ctx):
+    await ctx.send(batugame)
+
 
 
 @bot.command()
