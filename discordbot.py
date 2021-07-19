@@ -337,6 +337,12 @@ async def myosta(ctx):
 	embed.add_field(name="/member_info", value="コマンドを打った人の情報を表示するよ")
 	await ctx.send(embed=embed)
 
+@bot.command()
+async def myostaa(ctx):
+    embed.clear_fields()
+    embed.title = "みょすたbotの使い方"
+    await ctx.send(embed=embed)
+
 class MakeTeam:
 
     def __init__(self):
