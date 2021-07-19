@@ -80,6 +80,12 @@ def omikuji_result():
         return "大凶"
 
 @bot.command()
+async def batu(ctx):
+    word = random.choice(batugame)
+    player = ctx.author.nam
+    await ctx.send(f"{player}さんは{word}です")
+
+@bot.command()
 async def kuji(ctx, num = 1):
     number_list = list(range(int(num)))
     for n in number_list:
