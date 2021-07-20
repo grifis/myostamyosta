@@ -6,6 +6,7 @@ import random
 from random import randint
 import asyncio
 import numpy as np
+from MakeTeam import MakeTeam
 
 intents = discord.Intents.default()
 intents.members = True
