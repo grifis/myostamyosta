@@ -213,15 +213,6 @@ async def slot(ctx):
         await ctx.send("%s%s%s" % (A, B, C))
 
 @bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
-
-@bot.command()
-async def cha(ctx):
-	content = random.choice(character)
-	await ctx.send(f"{ctx.author.name}さんは{content}を使ってね！")
-
-@bot.command()
 async def vc(ctx):
 	member = ctx.author
 	if member.voice and member.voice.channel:
