@@ -1,3 +1,5 @@
+import random
+
 class MakeTeam:
 
     def __init__(self):
