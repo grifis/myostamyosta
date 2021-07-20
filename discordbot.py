@@ -196,27 +196,6 @@ async def on_message(message):
 		content = random.choice(random_contents)
 		await message.channel.send(content)
 
-	if "ランダムヒーロー" in message.content:
-		hero = random.choice(character)
-		await message.channel.send(hero)
-
-	if "ランダムアタッカー" in message.content:
-		hero_a = random.choice(attacker)
-		await message.channel.send(hero_a)
-
-	if "ランダムデッキ" in message.content:
-		deck_a = random.choices(deck, k=4)
-		await message.channel.send(deck_a)
-
-	if "ヒーローデッキ" in message.content:
-		hero = random.choice(character)
-		deck_a = random.choices(deck, k=4)
-		await message.channel.send(hero)
-		await message.channel.send(deck_a)
-
-
-
-
 	await bot.process_commands(message)
 
 @bot.command()
