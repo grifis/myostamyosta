@@ -171,47 +171,16 @@ async def on_command_error(ctx, error):
 @bot.event
 async def on_message(message):
 
-    if message.content.startswith(prefix):
-        pass
-    else:
-        if message.guild.voice_client:
-            text = message.content
-            text = text.replace('\n', '、')
-            pattern = r' ?<@(\d+)> '
-            match = re.findall(pattern, text)
-            for user_id in match:
-                user = await bot.fetch_user(user_id)
-                username = f'、{user.name}へのメンション、'
-                text = re.sub(f' ?<@{user_id}> ', username, text)
-            pattern = r'<:([a-zA-Z0-9_]+):\d+>'
-            match = re.findall(pattern, text)
-            for emoji_name in match:
-                emoji_read_name = emoji_name.replace('_', ' ')
-                text = re.sub(rf'<:{emoji_name}:\d+>', f'、{emoji_read_name}、', text)
-            pattern = r'https://tenor.com/view/[\w/:%#\$&\?\(\)~\.=\+\-]+'
-            text = re.sub(pattern, '画像', text)
-            pattern = r'https?://[\w/:%#\$&\?\(\)~\.=\+\-]+(\.jpg|\.jpeg|\.gif|\.png|\.bmp)'
-            text = re.sub(pattern, '、画像', text)
-            pattern = r'https?://[\w/:%#\$&\?\(\)~\.=\+\-]+'
-            text = re.sub(pattern, '、URL', text)
-            text =  text
-            if text[-1:] == 'w' or text[-1:] == 'W' or text[-1:] == 'ｗ' or text[-1:] == 'W':
-                while text[-2:-1] == 'w' or text[-2:-1] == 'W' or text[-2:-1] == 'ｗ' or text[-2:-1] == 'W':
-                    text = text[:-1]
-                text = text[:-1] + '、ワラ'
-            if message.attachments:
-                text += '、添付ファイル'
-            if len(text) < 100:
-                s_quote = urllib.parse.quote(text)
-                mp3url = f'http://translate.google.com/translate_tts?ie=UTF-8&q={s_quote}&tl={lang}&client=tw-ob'
-                while message.guild.voice_client.is_playing():
-                    await asyncio.sleep(0.5)
-                message.guild.voice_client.play(discord.FFmpegPCMAudio(mp3url))
-            else:
-                await message.channel.send('100文字以上は読み上げできません。')
-        else:
-            pass
-    await bot.process_commands(message)
+	if message.author == bot.user:
+		#botからのメッセージには反応しない
+		#この判定をしないと無限ループが起きる
+		return
+
+	if "みょすた" in message.content:
+		content = random.choice(random_contents)
+		await message.channel.send(content)
+
+	await bot.process_commands(message)
 
 @bot.command()
 async def slot(ctx):
