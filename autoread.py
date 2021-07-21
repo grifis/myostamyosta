@@ -151,4 +151,4 @@ async def ヘルプ(ctx):
 {prefix}切断：ボイスチャンネルから切断します。'''
     await ctx.send(message)
 
-bot.run("NzYzNDI0NDE0ODUwNjEzMjQ5.X33gZA.M9HR_KZDNKcoK0kHfO5gi1_DXWY")
+bot.run(token)
