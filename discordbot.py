@@ -332,7 +332,7 @@ async def 切断(ctx):
 
 @bot.event
 async def on_message(message):
-    if message.content.startswith(prefix):
+    if message.content.startswith("/"):
         pass
     else:
         if message.guild.voice_client:
