@@ -168,19 +168,6 @@ async def on_command_error(ctx, error):
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
 
-@bot.event
-async def on_message(message):
-
-	if message.author == bot.user:
-		#botからのメッセージには反応しない
-		#この判定をしないと無限ループが起きる
-		return
-
-	if "みょすた" in message.content:
-		content = random.choice(random_contents)
-		await message.channel.send(content)
-
-	await bot.process_commands(message)
 
 @bot.command()
 async def slot(ctx):
