@@ -6,7 +6,7 @@ import traceback
 import urllib.parse
 import re
 
-prefix = os.getenv('DISCORD_BOT_PREFIX', default='.')
+prefix = os.getenv('DISCORD_BOT_PREFIX', default='$')
 lang = os.getenv('DISCORD_BOT_LANG', default='ja')
 bot = commands.Bot(command_prefix=prefix)
 token = os.environ['DISCORD_BOT_TOKEN']
@@ -151,4 +151,4 @@ async def ヘルプ(ctx):
 {prefix}切断：ボイスチャンネルから切断します。'''
     await ctx.send(message)
 
-bot.run(token)
+bot.run("NzYzNDI0NDE0ODUwNjEzMjQ5.X33gZA.M9HR_KZDNKcoK0kHfO5gi1_DXWY")
