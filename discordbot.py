@@ -314,5 +314,13 @@ async def group(ctx, specified_num=1):
     msg = make_team.make_specified_len(ctx,specified_num)
     await ctx.channel.send(msg)
 
+@bot.command()
+async def 切断(ctx):
+    if ctx.message.guild:
+        if ctx.voice_client is None:
+            await ctx.send('ボイスチャンネルに接続していません。')
+        else:
+            await ctx.voice_client.disconnect()
+
 bot.load_extension("cogs.greet")
 bot.run(token)
