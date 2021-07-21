@@ -9,6 +9,7 @@ import re
 prefix = os.getenv('DISCORD_BOT_PREFIX', default='.')
 lang = os.getenv('DISCORD_BOT_LANG', default='ja')
 bot = commands.Bot(command_prefix=prefix)
+token = os.environ['DISCORD_BOT_TOKEN']
 
 @bot.event
 async def on_ready():
@@ -150,4 +151,4 @@ async def ヘルプ(ctx):
 {prefix}切断：ボイスチャンネルから切断します。'''
     await ctx.send(message)
 
-bot.run("NzYzNDI0NDE0ODUwNjEzMjQ5.X33gZA.iKAzLjgpNmB2c-42y2CrQj0Y7FY")
+bot.run(token)
