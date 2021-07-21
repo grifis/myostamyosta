@@ -1,1 +1,1 @@
-discordbot: python autoread.py
+discordbot: python discordbot.py
