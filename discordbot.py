@@ -8,6 +8,8 @@ import asyncio
 import numpy as np
 from MakeTeam import MakeTeam
 from omikuji_result import omikuji_result
+import urllib.parse
+import re
 
 intents = discord.Intents.default()
 intents.members = True
