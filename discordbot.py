@@ -317,7 +317,7 @@ async def group(ctx, specified_num=1):
 
 
 @bot.command()
-async def join(ctx):
+async def s(ctx):
     global channel_id
     channel_id = ctx.channel.id
     if ctx.message.guild:
