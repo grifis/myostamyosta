@@ -84,7 +84,7 @@ async def batu_list(ctx):
 
 
 @bot.command()
-async def kuji(ctx, num = 1):
+async def 宝くじ(ctx, num = 1):
     number_list = list(range(int(num)))
     for n in number_list:
         dice = list(range(1, 8))
@@ -275,6 +275,7 @@ async def deck(ctx):
 async def myosta(ctx):
     embed.clear_fields()
     embed.title = "みょすたbotの使い方"
+    embed.add_field(name="/宝くじ 10", value="宝くじを10枚買えるよ")
     embed.add_field(name="/hero", value="ランダムにヒーローを指定するよ")
     embed.add_field(name="/deck", value="ランダムにデッキを指定するよ")
     embed.add_field(name="/hd", value="ランダムにヒーローとデッキを指定するよ")
