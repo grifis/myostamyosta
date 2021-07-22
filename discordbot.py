@@ -86,25 +86,28 @@ async def batu_list(ctx):
 @bot.command()
 async def 宝くじ(ctx, num = 1):
     number_list = list(range(int(num)))
+    result = []
     for n in number_list:
         dice = list(range(1, 8))
         kakuritu = np.random.choice(
             dice, p=[0.0000001, 0.0000002, 0.00001, 0.0001, 0.01, 0.1, 0.8898897]
         )
         if kakuritu == 1:
-            await ctx.send("1等！５億円！！")
+            result.append("1等！５億円！！")
         elif kakuritu == 2:
-            await ctx.send("2等！2000万円！！")
+            result.append("2等！2000万円！！")
         elif kakuritu == 3:
-            await ctx.send("3等！100万円！！")
+            result.append("3等！100万円！！")
         elif kakuritu == 4:
-            await ctx.send("4等！5万円！！")
+            result.append("4等！5万円！！")
         elif kakuritu == 5:
-            await ctx.send("5等！3000円！！")
+            result.append("5等！3000円！！")
         elif kakuritu == 6:
-            await ctx.send("6等！300円")
+            result.append("6等！300円")
         elif kakuritu == 7:
-            await ctx.send("残念！ハズレだよ！")
+            result.append("残念！ハズレだよ！")
+    content = "\n".join(result)
+    await ctx.send(content)
 
 def hand_to_int(hand):
     """
