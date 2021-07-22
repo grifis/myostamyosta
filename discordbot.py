@@ -17,7 +17,7 @@ bot = commands.Bot(command_prefix='/', intents=intents)
 token = os.environ['DISCORD_BOT_TOKEN']
 embed = discord.Embed()
 embed.color = discord.Color.blue()
-
+lang = os.getenv('DISCORD_BOT_LANG', default='ja')
 
 batugame = [
     "自身の良いところを熱く語る", "語尾に「にゃん」と言う", "一位の人をご主人様と呼ぶ", "語尾にぴょんと言う",
