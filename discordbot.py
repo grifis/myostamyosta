@@ -384,12 +384,11 @@ async def on_message(message):
 async def on_voice_state_update(member, before, after):
     if before.channel is None:
         if member.id == bot.user.id:
-            presence = f'{prefix}ヘルプ | {len(bot.voice_clients)}/{len(bot.guilds)}サーバー'
+            presence = f'/ヘルプ | {len(bot.voice_clients)}/{len(bot.guilds)}サーバー'
             await bot.change_presence(activity=discord.Game(name=presence))
         else:
             if member.guild.voice_client is None:
-                await asyncio.sleep(0.5)
-                await after.channel.connect()
+                pass
             else:
                 if member.guild.voice_client.channel is after.channel:
                     text = member.name + 'さんが入室しました'
@@ -400,7 +399,7 @@ async def on_voice_state_update(member, before, after):
                     member.guild.voice_client.play(discord.FFmpegPCMAudio(mp3url))
     elif after.channel is None:
         if member.id == bot.user.id:
-            presence = f'{prefix}ヘルプ | {len(bot.voice_clients)}/{len(bot.guilds)}サーバー'
+            presence = f'/ヘルプ | {len(bot.voice_clients)}/{len(bot.guilds)}サーバー'
             await bot.change_presence(activity=discord.Game(name=presence))
             await bot.change_presence(activity=discord.Game(name=presence))
         else:
@@ -415,13 +414,6 @@ async def on_voice_state_update(member, before, after):
                     while member.guild.voice_client.is_playing():
                         await asyncio.sleep(0.5)
                     member.guild.voice_client.play(discord.FFmpegPCMAudio(mp3url))
-    elif before.channel != after.channel:
-        if member.guild.voice_client.channel is before.channel:
-            if len(member.guild.voice_client.channel.members) == 1 or member.voice.self_mute:
-                await asyncio.sleep(0.5)
-                await member.guild.voice_client.disconnect()
-                await asyncio.sleep(0.5)
-                await after.channel.connect()
 
 
 
