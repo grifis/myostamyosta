@@ -290,7 +290,7 @@ async def myosta(ctx):
     embed.add_field(name="/member_info", value="コマンドを打った人の情報を表示するよ")
     embed.add_field(name="/batu", value="みょすたが罰ゲームを考えてくれるよ")
     embed.add_field(name="/batu_list", value="罰ゲーム一覧を表示するよ")
-    embed.add_field(name="/join", value="みょすたが読み上げをしてくれます")
+    embed.add_field(name="/s", value="みょすたが読み上げをしてくれます")
     embed.add_field(name="/dc", value="みょすたが読み上げを終了します")
     await ctx.send(embed=embed)
 
