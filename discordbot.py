@@ -117,9 +117,9 @@ def hand_to_int(hand):
     handはカタカナ，ひらがな表記，数字に対応する
     """
     hand_int = None
-    if hand in ["グー", "ぐー", "0"]:
+    if hand in ["グー", "ぐー", "goo", "ぐ", "0"]:
         hand_int = 0
-    elif hand in ["チョキ", "ちょき", "1"]:
+    elif hand in ["チョキ", "ちょき", "1", "choki"]:
         hand_int = 1
     elif hand in ["パー", "ぱー", "2"]:
         hand_int = 2
