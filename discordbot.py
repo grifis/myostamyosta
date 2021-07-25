@@ -409,7 +409,7 @@ async def on_voice_state_update(member, before, after):
                     member.guild.voice_client.play(discord.FFmpegPCMAudio(mp3url))
     elif after.channel is None:
         if member.id == bot.user.id:
-            presence = f'/ヘルプ | {len(bot.voice_clients)}/{len(bot.guilds)}サーバー'
+            presence = f'{len(bot.voice_clients)}/{len(bot.guilds)}サーバー'
             await bot.change_presence(activity=discord.Game(name=presence))
             await bot.change_presence(activity=discord.Game(name=presence))
         else:
