@@ -82,7 +82,7 @@ async def on_ready():
 
 @bot.command()
 async def batu(ctx):
-    if ctx.autor.voice: 
+    if ctx.author.voice: 
         if ctx.author.voice.self_mute:
             embed.clear_fields()
             hero = random.choice(batugame_kikisen)
