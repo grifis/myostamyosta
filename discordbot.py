@@ -82,18 +82,21 @@ async def on_ready():
 
 @bot.command()
 async def batu(ctx):
-    if ctx.author.voice.self_mute:
-        embed.clear_fields()
-        hero = random.choice(batugame_kikisen)
-        embed.title = f"{ctx.author.name}"
-        embed.description = f"{hero}"
-        await ctx.send(embed=embed)
-    else:
-        embed.clear_fields()
-        hero = random.choice(batugame)
-        embed.title = f"{ctx.author.name}"
-        embed.description = f"{hero}"
-        await ctx.send(embed=embed)
+    if ctx.autor.voice: 
+        if ctx.author.voice.self_mute:
+            embed.clear_fields()
+            hero = random.choice(batugame_kikisen)
+            embed.title = f"{ctx.author.name}"
+            embed.description = f"{hero}"
+            await ctx.send(embed=embed)
+        else:
+            embed.clear_fields()
+            hero = random.choice(batugame)
+            embed.title = f"{ctx.author.name}"
+            embed.description = f"{hero}"
+            await ctx.send(embed=embed)
+    else: 
+        await ctx.send("ボイスチャンネルに入ってからコマンドを打ってね")
 
 @bot.command()
 async def batu_list(ctx):
