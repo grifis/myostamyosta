@@ -33,6 +33,15 @@ batugame = [
     "パジャマを載せる"
 ]
 
+batugame_kikisen = [
+    "自身のいいところを熱く語る", "ギルドのメンバーで付き合うなら誰？", "恥ずかしい話をする", "メンバー1名を褒める", "ギルドの中で密かにライバル視している人をいう",
+    "今の気持ちを一句", "恋人に求める条件を言う", "苦手な教科とその理由", "苦手なスポーツとその理由", "苦手な食べ物とその理由", "理想的なデートのシチュエーション",
+    "今まで付き合った人数を言う", "苦手な教科とその理由", "苦手なスポーツとその理由", "苦手な食べ物とその理由", "理想的なデートのシチュエーションを暴露",
+    "コンパスヒーローで付き合うなら誰？", "テストで撮った最低得点", "苦手な生き物とその理由", "ギルメンに言ってない秘密を暴露", "自分を動物で例えると？",
+    "一位の人のいいところを挙げる", "恋愛対象は何歳まで？", "結婚するとしたらいつまでにしたい？", "最近買った一番高いものは？", "人生で一番辛かったことは？", 
+    "今までで死にかけたことはある？", "好きな異性の髪型は？"
+]
+
 random_contents = [
 	"みょすたのこと呼んだ...？","みょすただよ！！","みょすた参上...!","みょすたって響きいいよね","みょすたは不滅！","みょすたんたんめん","みょすたいやき",
 	"みょすたるたるそーす","みょすたっかるび","みょすたこやき","みょすたは食べ物だった...？","みょんみょんみょんみょん",
@@ -73,11 +82,18 @@ async def on_ready():
 
 @bot.command()
 async def batu(ctx):
-    embed.clear_fields()
-    hero = random.choice(batugame)
-    embed.title = f"{ctx.author.name}"
-    embed.description = f"{hero}"
-    await ctx.send(embed=embed)
+    if ctx.author.voice.self_mute:
+        embed.clear_fields()
+        hero = random.choice(batugame_kikisen)
+        embed.title = f"{ctx.author.name}"
+        embed.description = f"{hero}"
+        await ctx.send(embed=embed)
+    else:
+        embed.clear_fields()
+        hero = random.choice(batugame)
+        embed.title = f"{ctx.author.name}"
+        embed.description = f"{hero}"
+        await ctx.send(embed=embed)
 
 @bot.command()
 async def batu_list(ctx):
