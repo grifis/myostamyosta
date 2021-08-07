@@ -18,7 +18,7 @@ token = os.environ['DISCORD_BOT_TOKEN']
 embed = discord.Embed()
 embed.color = discord.Color.blue()
 lang = os.getenv('DISCORD_BOT_LANG', default='ja')
-channel_id = None
+channel_id = []
 
 batugame = [
     "自身の良いところを熱く語る", "語尾ににゃんと言う", "一位の人をご主人様と呼ぶ", "語尾にぴょんと言う",
@@ -339,7 +339,7 @@ async def group(ctx, specified_num=1):
 @bot.command()
 async def s(ctx):
     global channel_id
-    channel_id = ctx.channel.id
+    channel_id.append(ctx.channel.id)
     if ctx.message.guild:
         if ctx.author.voice is None:
             await ctx.send('ボイスチャンネルに接続してから呼び出してください。')
@@ -366,7 +366,7 @@ async def dc(ctx):
 
 @bot.event
 async def on_message(message):
-    if message.channel.id == channel_id:
+    if message.channel.id in channel_id:
         if message.content.startswith("/"):
             pass
         else:
