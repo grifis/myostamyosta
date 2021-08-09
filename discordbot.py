@@ -444,6 +444,11 @@ async def on_voice_state_update(member, before, after):
                     while member.guild.voice_client.is_playing():
                         await asyncio.sleep(0.5)
                     member.guild.voice_client.play(discord.FFmpegPCMAudio(mp3url))
+        if len(bot.voice_clients) == 0:
+            global channel_id
+            channel_id.clear()
+        else:
+            pass
 
 
 
