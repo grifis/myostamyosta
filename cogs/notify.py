@@ -16,7 +16,7 @@ class Notify(commands.Cog):
 	@tasks.loop(seconds=60)
 	async def notifier(self):
 		now = datetime.now().strftime('%H:%M')
-		if now == '20:30':
+		if now == '20:34':
 			if self.channel:
 				await self.channel.send(f"{mention} 現在{now}です。テスト成功。")
 		if now == '21:00':
