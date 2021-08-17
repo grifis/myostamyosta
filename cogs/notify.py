@@ -16,18 +16,18 @@ class Notify(commands.Cog):
 	@tasks.loop(seconds=60)
 	async def notifier(self):
 		now = datetime.now().strftime('%H:%M')
-		if now == '20:00':
+		if now == '20:30':
 			if self.channel:
-				await self.channel.send(f"{mention} 現在{now.strftime('%H:%M')}です。テスト成功。")
+				await self.channel.send(f"{mention} 現在{now}です。テスト成功。")
 		if now == '21:00':
 			if self.channel:
-				await self.channel.send(f"{mention} 現在{now.strftime('%H:%M')}です。テスト成功")
+				await self.channel.send(f"{mention} 現在{now}です。テスト成功")
 		if now == '22:00':
 			if self.channel:
-				await self.channel.send(f"{mention} 現在{now.strftime('%H:%M')}です。テスト成功")
+				await self.channel.send(f"{mention} 現在{now}です。テスト成功")
 		if now == '23:00':
 			if self.channel:
-				await self.channel.send(f"{mention} 現在{now.strftime('%H:%M')}です。テスト成功")
+				await self.channel.send(f"{mention} 現在{now}です。テスト成功")
 
 	@commands.command()
 	async def set_notify_channel(self, ctx):
