@@ -451,6 +451,6 @@ async def on_voice_state_update(member, before, after):
             pass
 
 
-
+bot.load_extension("cogs.notify")
 bot.load_extension("cogs.greet")
 bot.run(token)
