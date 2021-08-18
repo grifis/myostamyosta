@@ -18,7 +18,7 @@ token = os.environ['DISCORD_BOT_TOKEN']
 embed = discord.Embed()
 embed.color = discord.Color.blue()
 lang = os.getenv('DISCORD_BOT_LANG', default='ja')
-channel_id = []
+channel_id = {}
 
 batugame = [
     "自身の良いところを熱く語る", "語尾ににゃんと言う", "一位の人をご主人様と呼ぶ", "語尾にぴょんと言う",
@@ -38,12 +38,12 @@ batugame_kikisen = [
     "今の気持ちを一句", "恋人に求める条件を言う", "苦手な教科とその理由", "苦手なスポーツとその理由", "苦手な食べ物とその理由", "理想的なデートのシチュエーション",
     "今まで付き合った人数を言う", "苦手な教科とその理由", "苦手なスポーツとその理由", "苦手な食べ物とその理由", "理想的なデートのシチュエーションを暴露",
     "コンパスヒーローで付き合うなら誰？", "テストで撮った最低得点", "苦手な生き物とその理由", "ギルメンに言ってない秘密を暴露", "自分を動物で例えると？",
-    "一位の人のいいところを挙げる", "恋愛対象は何歳まで？", "結婚するとしたらいつまでにしたい？", "最近買った一番高いものは？", "人生で一番辛かったことは？", 
+    "一位の人のいいところを挙げる", "恋愛対象は何歳まで？", "結婚するとしたらいつまでにしたい？", "最近買った一番高いものは？", "人生で一番辛かったことは？",
     "今までで死にかけたことはある？", "好きな異性の髪型は？", "自慢できることを一つ言う"
 ]
 
 random_contents = [
-	"みょすたのこと呼んだ...？","みょすただよ！！","みょすた参上...!","みょすたって響きいいよね","みょすたは不滅！","みょすたんたんめん","みょすたいやき",
+    "みょすたのこと呼んだ...？","みょすただよ！！","みょすた参上...!","みょすたって響きいいよね","みょすたは不滅！","みょすたんたんめん","みょすたいやき",
 	"みょすたるたるそーす","みょすたっかるび","みょすたこやき","みょすたは食べ物だった...？","みょんみょんみょんみょん",
 	"そろそろみょすたると崩壊してきた？","もしもし、私みょすたさん。今あなたの後ろにいるの。","魔法少女みょすた、キミのために戦うよ！","みんなの夢を守るため、みょすた、戦います！",
 	"みょすたみんと鬼龍のみょすみんです！しゅび！！","みょすたぴおか","みょすたまごかけごはん","みょすたこす","みょすたこらいす","みょすたいあたり！！","みょすたとお友達になってくれる？",
@@ -339,7 +339,8 @@ async def group(ctx, specified_num=1):
 @bot.command()
 async def s(ctx):
     global channel_id
-    channel_id.append(ctx.channel.id)
+    guild_id = ctx.guild.id
+    channel_id[f"guild_id"] = ctx.channel.id
     if ctx.message.guild:
         if ctx.author.voice is None:
             await ctx.send('ボイスチャンネルに接続してから呼び出してください。')
@@ -366,7 +367,8 @@ async def dc(ctx):
 
 @bot.event
 async def on_message(message):
-    if message.channel.id in channel_id:
+    guild_id = message.guild.id
+    if message.channel.id == channel_id.get(f"guild_id"):
         if message.content.startswith("/"):
             pass
         else:
@@ -444,11 +446,6 @@ async def on_voice_state_update(member, before, after):
                     while member.guild.voice_client.is_playing():
                         await asyncio.sleep(0.5)
                     member.guild.voice_client.play(discord.FFmpegPCMAudio(mp3url))
-        if len(bot.voice_clients) == 0:
-            global channel_id
-            channel_id.clear()
-        else:
-            pass
 
 
 bot.load_extension("cogs.notify")
