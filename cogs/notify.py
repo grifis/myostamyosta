@@ -15,17 +15,17 @@ class Notify(commands.Cog):
 
 	@tasks.loop(seconds=60)
 	async def notifier(self):
-		now = datetime.now(pytz.timezone('Asia/Tokyo')).strftime('%H:%M')
-		if now == '22:20':
+		now = datetime.now().strftime('%H:%M')
+		if now == '10:35':
 			if self.channel:
 				await self.channel.send(f"{mention} 現在{now}です。テスト成功。")
-		if now == '22:30':
+		if now == '10:40':
 			if self.channel:
 				await self.channel.send(f"{mention} 現在{now}です。テスト成功")
-		if now == '22:40':
+		if now == '10:45':
 			if self.channel:
 				await self.channel.send(f"{mention} 現在{now}です。テスト成功")
-		if now == '22:50':
+		if now == '10:50':
 			if self.channel:
 				await self.channel.send(f"{mention} 現在{now}です。テスト成功")
 
