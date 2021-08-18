@@ -13,7 +13,7 @@ class Notify(commands.Cog):
 
 	@tasks.loop(seconds=1.0)
 	async def notifier(self):
-		now = datetime.now()
+		now = datetime.now(pytz.timezone('Asia/Tokyo'))
 		if self.channel:
 			await self.channel.send(
 				f"現在、{now.strftime('%Y/%m/%d %H:%M:%S')}です")
