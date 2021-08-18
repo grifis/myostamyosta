@@ -2,6 +2,7 @@ from discord.ext import commands
 from discord.ext import tasks
 from datetime import datetime
 
+
 class Notify(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
@@ -11,9 +12,9 @@ class Notify(commands.Cog):
 	def cog_unload(self):
 		self.notifier.cancel()
 
-	@tasks.loop(seconds=1.0)
+	@tasks.loop(seconds=5.0, count=5)
 	async def notifier(self):
-		now = datetime.now(pytz.timezone('Asia/Tokyo'))
+		now = datetime.now()
 		if self.channel:
 			await self.channel.send(
 				f"現在、{now.strftime('%Y/%m/%d %H:%M:%S')}です")
