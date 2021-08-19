@@ -19,18 +19,10 @@ class Notify(commands.Cog):
 	@tasks.loop(seconds=60)
 	async def notifier(self):
 		now = datetime.now().strftime('%H:%M')
-		if now == '10:35':
+		if now == '07:35':
 			if self.channel:
-				await self.channel.send(f"{mention} 現在{now}です。テスト成功。")
-		if now == '10:40':
-			if self.channel:
-				await self.channel.send(f"{mention} 現在{now}です。テスト成功")
-		if now == '10:45':
-			if self.channel:
-				await self.channel.send(f"{mention} 現在{now}です。テスト成功")
-		if now == '10:50':
-			if self.channel:
-				await self.channel.send(f"{mention} 現在{now}です。テスト成功")
+				await self.channel.send(f"おはようございます")
+		
 
 	@commands.command()
 	async def set_notify_channel(self, ctx):
@@ -39,7 +31,7 @@ class Notify(commands.Cog):
 		self.channel = ctx.channel
 		global mention
 		mention = Role.mention
-		await ctx.send(f"{Role.mention} 「{ctx.channel.name}」にてテストを行います！")
+		await ctx.send(f"🥺")
 
 
 def setup(bot):
