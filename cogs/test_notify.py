@@ -13,7 +13,7 @@ class Notify(commands.Cog):
 	def cog_unload(self):
 		self.notifier.cancel()
 
-	@tasks.loop(hours=0.5)
+	@tasks.loop(seconds=5)
 	async def notifier(self):
 		now = datetime.now().strftime('%A:%H:%M')
 		if self.channel:
