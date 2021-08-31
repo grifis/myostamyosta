@@ -340,7 +340,7 @@ async def group(ctx, specified_num=1):
 async def s(ctx):
     global channel_id
     guild_id = ctx.guild.id
-    channel_id[f"guild_id"] = ctx.channel.id
+    channel_id[guild_id] = ctx.channel.id
     if ctx.message.guild:
         if ctx.author.voice is None:
             await ctx.send('ボイスチャンネルに接続してから呼び出してください。')
@@ -368,7 +368,7 @@ async def dc(ctx):
 @bot.event
 async def on_message(message):
     guild_id = message.guild.id
-    if message.channel.id == channel_id.get(f"guild_id"):
+    if message.channel.id == channel_id.get(guild_id):
         if message.content.startswith("/"):
             pass
         else:
