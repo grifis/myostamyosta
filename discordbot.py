@@ -10,6 +10,7 @@ from MakeTeam import MakeTeam
 from omikuji_result import omikuji_result
 import urllib.parse
 import re
+import yutube_dl
 
 intents = discord.Intents.default()
 intents.members = True
