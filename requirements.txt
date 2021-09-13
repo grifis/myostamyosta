@@ -1,2 +1,3 @@
-discord.py[voice]>=1.4.1
+jdiscord.py[voice]>=1.4.1
 numpy==1.18.5
+youtube-dl==2021.6.6
