@@ -68,6 +68,8 @@ card = [
 	"近距離","遠距離","連続","周囲","回復","ガード","強化","弱体化","移動","設置","その他"
 ]
 
+setlist = []
+
 youtube_dl.utils.bug_reports_message = lambda: ''
 
 
@@ -127,24 +129,60 @@ class Music(commands.Cog):
 
         await channel.connect()
 
-    @commands.command()
-    async def play(self, ctx, *, query):
-        """Plays a file from the local filesystem"""
-
-        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(query))
-        ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
-
-        await ctx.send('Now playing: {}'.format(query))
 
     @commands.command()
     async def yt(self, ctx, *, url):
         """Plays from a url (almost anything youtube_dl supports)"""
-
+        await ctx.channel.send("実験失敗")
         async with ctx.typing():
             player = await YTDLSource.from_url(url, loop=self.bot.loop)
             ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
 
         await ctx.send('Now playing: {}'.format(player.title))
+
+    @commands.command(aliases=["fs"])
+    async def skip(self, ctx):
+        await ctx.send(":fast_forward: Skipped :thumbsup:")
+        await ctx.voice_client.pause()
+
+    @commands.command()
+    async def start(self, ctx):
+        await ctx.voice_client.resume()
+
+
+    @commands.command()
+    async def list(self, ctx, *, url):
+        global setlist
+        setlist.append(url)
+        await ctx.send(setlist)
+
+    @commands.command(aliases=["p"])
+    async def plak(self, ctx, *, url):
+        channel = ctx.author.voice
+        if channel is None:
+            return await ctx.send("❌You have to be in a voice channel to use this command.")
+        else:
+            if ctx.voice_client:
+                pass
+            else:
+                await ctx.author.voice.channel.connect()
+
+        global setlist
+        setlist.append(url)
+
+        if ctx.voice_client.is_playing():
+            pass
+        else:     
+            while 1:
+                while ctx.voice_client.is_playing():
+                    await asyncio.sleep(0.5)
+                music = setlist.pop(0)
+                await ctx.send(f":musical_note: Searching :mag_right: {music}")
+                async with ctx.typing():
+                    player = await YTDLSource.from_url(music, loop=self.bot.loop)
+                    ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+                await ctx.send('Playing :notes: {} - Now!'.format(player.title))
+            await ctx.send(setlist)
 
     @commands.command()
     async def stream(self, ctx, *, url):
@@ -166,13 +204,13 @@ class Music(commands.Cog):
         ctx.voice_client.source.volume = volume / 100
         await ctx.send("Changed volume to {}%".format(volume))
 
-    @commands.command()
+    @commands.command(aliases=["bye", "disconnect", "dc", "dis"])
     async def stop(self, ctx):
         """Stops and disconnects the bot from voice"""
 
         await ctx.voice_client.disconnect()
+        await ctx.send("📭 **Successfully disconnected**")
 
-    @play.before_invoke
     @yt.before_invoke
     @stream.before_invoke
     async def ensure_voice(self, ctx):
@@ -185,7 +223,11 @@ class Music(commands.Cog):
         elif ctx.voice_client.is_playing():
             ctx.voice_client.stop()
 
+
+
+
 bot.add_cog(Music(bot))
+
 
 @bot.event
 async def on_command_error(ctx, error):
