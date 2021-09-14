@@ -176,7 +176,6 @@ class Music(commands.Cog):
                 while ctx.voice_client.is_playing():
                     await asyncio.sleep(0.5)
                 music = setlist.pop(0)
-                await ctx.send(f":musical_note: Searching :mag_right: {music}")
                 async with ctx.typing():
                     player = await YTDLSource.from_url(music, loop=self.bot.loop)
                     ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
