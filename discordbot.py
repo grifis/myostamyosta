@@ -139,7 +139,7 @@ class Music(commands.Cog):
             ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
 
         await ctx.send('Now playing: {}'.format(player.title))
-    @commands.command(aliases=["fs", "s"])
+    @commands.command(aliases=["fs"])
     async def skip(self, ctx):
         await ctx.send(":fast_forward: Skipped :thumbsup:")
         await ctx.voice_client.pause()
@@ -203,12 +203,11 @@ class Music(commands.Cog):
         ctx.voice_client.source.volume = volume / 100
         await ctx.send("Changed volume to {}%".format(volume))
 
-    @commands.command(aliases=["bye", "disconnect", "dc", "dis"])
+    @commands.command()
     async def stop(self, ctx):
         """Stops and disconnects the bot from voice"""
 
         await ctx.voice_client.disconnect()
-        await ctx.send("📭 **Successfully disconnected**")
 
     @yt.before_invoke
     @stream.before_invoke
@@ -493,7 +492,7 @@ async def group(ctx, specified_num=1):
 
 
 @bot.command()
-async def start(ctx):
+async def s(ctx):
     global channel_id
     guild_id = ctx.guild.id
     channel_id[guild_id] = ctx.channel.id
@@ -511,6 +510,14 @@ async def start(ctx):
             else:
                 await ctx.author.voice.channel.connect()
 
+
+@bot.command()
+async def dc(ctx):
+    if ctx.message.guild:
+        if ctx.voice_client is None:
+            await ctx.send('ボイスチャンネルに接続していません。')
+        else:
+            await ctx.voice_client.disconnect()
 
 
 @bot.event
