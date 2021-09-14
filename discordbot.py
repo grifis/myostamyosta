@@ -507,6 +507,7 @@ async def dc(ctx):
             await ctx.send('ボイスチャンネルに接続していません。')
         else:
             await ctx.voice_client.disconnect()
+            await ctx.send("📭 **Successfully disconnected**")
 
 
 @bot.event
