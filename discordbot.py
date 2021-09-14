@@ -203,11 +203,12 @@ class Music(commands.Cog):
         ctx.voice_client.source.volume = volume / 100
         await ctx.send("Changed volume to {}%".format(volume))
 
-    @commands.command()
+    @commands.command(aliases=["bye", "disconnect", "dc", "dis"])
     async def stop(self, ctx):
         """Stops and disconnects the bot from voice"""
 
         await ctx.voice_client.disconnect()
+        await ctx.send("📭 **Successfully disconnected**")
 
     @yt.before_invoke
     @stream.before_invoke
