@@ -139,7 +139,7 @@ class Music(commands.Cog):
             ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
 
         await ctx.send('Now playing: {}'.format(player.title))
-    @commands.command(aliases=["fs"])
+    @commands.command(aliases=["fs", "s"])
     async def skip(self, ctx):
         await ctx.send(":fast_forward: Skipped :thumbsup:")
         await ctx.voice_client.pause()
@@ -493,7 +493,7 @@ async def group(ctx, specified_num=1):
 
 
 @bot.command()
-async def s(ctx):
+async def start(ctx):
     global channel_id
     guild_id = ctx.guild.id
     channel_id[guild_id] = ctx.channel.id
@@ -511,14 +511,6 @@ async def s(ctx):
             else:
                 await ctx.author.voice.channel.connect()
 
-
-@bot.command()
-async def dc(ctx):
-    if ctx.message.guild:
-        if ctx.voice_client is None:
-            await ctx.send('ボイスチャンネルに接続していません。')
-        else:
-            await ctx.voice_client.disconnect()
 
 
 @bot.event
