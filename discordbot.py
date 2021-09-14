@@ -203,7 +203,7 @@ class Music(commands.Cog):
         ctx.voice_client.source.volume = volume / 100
         await ctx.send("Changed volume to {}%".format(volume))
 
-    @commands.command()
+    @commands.command(aliases=[dc])
     async def stop(self, ctx):
         """Stops and disconnects the bot from voice"""
 
@@ -511,13 +511,6 @@ async def s(ctx):
                 await ctx.author.voice.channel.connect()
 
 
-@bot.command()
-async def dc(ctx):
-    if ctx.message.guild:
-        if ctx.voice_client is None:
-            await ctx.send('ボイスチャンネルに接続していません。')
-        else:
-            await ctx.voice_client.disconnect()
 
 
 @bot.event
