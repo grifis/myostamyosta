@@ -496,7 +496,7 @@ async def group(ctx, specified_num=1):
 
 
 @bot.command()
-async def start(ctx):
+async def s(ctx):
     global channel_id
     guild_id = ctx.guild.id
     channel_id[guild_id] = ctx.channel.id
