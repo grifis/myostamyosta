@@ -140,7 +140,7 @@ class Music(commands.Cog):
             ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
 
         await ctx.send('Now playing: {}'.format(player.title))
-    @commands.command(aliases=["fs"])
+    @commands.command(aliases=["fs", "s"])
     async def skip(self, ctx):
         await ctx.send(":fast_forward: Skipped :thumbsup:")
         await ctx.voice_client.pause()
@@ -218,7 +218,7 @@ class Music(commands.Cog):
         ctx.voice_client.source.volume = volume / 100
         await ctx.send("Changed volume to {}%".format(volume))
 
-    @commands.command(aliases=["bye", "dis"])
+    @commands.command(aliases=["bye", "dis", "dc"])
     async def stop(self, ctx):
         """Stops and disconnects the bot from voice"""
 
