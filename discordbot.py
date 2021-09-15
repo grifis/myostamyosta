@@ -68,7 +68,7 @@ card = [
 	"近距離","遠距離","連続","周囲","回復","ガード","強化","弱体化","移動","設置","その他"
 ]
 
-setlist = []
+setlist_dic = {}
 loop_flag = False
 
 youtube_dl.utils.bug_reports_message = lambda: ''
@@ -153,7 +153,7 @@ class Music(commands.Cog):
     async def list(self, ctx, *, url):
         global setlist
         setlist.append(url)
-        await ctx.send(setlist)
+        await ctx.send(setlist_dic[guild_id])
 
     @commands.command()
     async def loop(self, ctx):
@@ -168,9 +168,10 @@ class Music(commands.Cog):
 
     @commands.command(aliases=["p"])
     async def plak(self, ctx, *, url):
-        channel = ctx.author.voice
         global loop_flag
-        global setlist
+        global setlist_dic
+        guild_id = ctx.guild.id
+        channel = ctx.author.voice
         if channel is None:
             return await ctx.send("❌You have to be in a voice channel to use this command.")
         else:
@@ -178,7 +179,7 @@ class Music(commands.Cog):
                 pass
             else:
                 loop_flag = False
-                setlist = []
+                setlist_dic[guild_id] = []
                 await ctx.author.voice.channel.connect()
                 await ctx.send(f":thumbsup: **Joined `{ctx.voice_client.channel.name}` and bound to #{ctx.channel.name}**")
 
@@ -192,13 +193,13 @@ class Music(commands.Cog):
                 while ctx.voice_client.is_playing():
                     await asyncio.sleep(0.5)
                 if loop_flag:
-                    setlist.insert(0, music)
-                music = setlist.pop(0)
+                    setlist_dic[guild_id].insert(0, music)
+                music = setlist_dic[guild_id].pop(0)
                 async with ctx.typing():
                     player = await YTDLSource.from_url(music, loop=self.bot.loop)
                     ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
                 await ctx.send('Playing :notes: {} - Now!'.format(player.title))
-            await ctx.send(setlist)
+            await ctx.send(setlist_dic[guild_id])
 
 
     @commands.command()
