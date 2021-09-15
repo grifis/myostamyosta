@@ -183,7 +183,7 @@ class Music(commands.Cog):
                 await ctx.author.voice.channel.connect()
                 await ctx.send(f":thumbsup: **Joined `{ctx.voice_client.channel.name}` and bound to #{ctx.channel.name}**")
 
-        setlist.append(url)
+        setlist_dic[guild_id].append(url)
         await ctx.send(f":musical_note: Searching :mag_right: {url}")
 
         if ctx.voice_client.is_playing():
