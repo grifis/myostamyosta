@@ -69,6 +69,7 @@ card = [
 ]
 
 setlist = []
+loop_flag = False
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 
@@ -154,6 +155,17 @@ class Music(commands.Cog):
         setlist.append(url)
         await ctx.send(setlist)
 
+    @commands.command()
+    async def loop(self, ctx):
+        global loop_flag
+        if loop_flag:
+            loop_flag = False
+            await ctx.send("🔂 **Disabled!**")
+        else:
+            loop_flag = True
+            await ctx.send("🔂 **Enabled!**")
+        return loop_flag
+
     @commands.command(aliases=["p"])
     async def plak(self, ctx, *, url):
         channel = ctx.author.voice
@@ -164,6 +176,7 @@ class Music(commands.Cog):
                 pass
             else:
                 await ctx.author.voice.channel.connect()
+                await ctx.send(f":thumbsup: **Joined `{ctx.voice_client.channel.name}` and bound to #{ctx.channel.name}**")
 
         global setlist
         setlist.append(url)
@@ -175,6 +188,8 @@ class Music(commands.Cog):
             while 1:
                 while ctx.voice_client.is_playing():
                     await asyncio.sleep(0.5)
+                if loop_flag:
+                    setlist.insert(0, music)
                 music = setlist.pop(0)
                 async with ctx.typing():
                     player = await YTDLSource.from_url(music, loop=self.bot.loop)
