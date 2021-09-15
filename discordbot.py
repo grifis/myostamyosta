@@ -169,16 +169,19 @@ class Music(commands.Cog):
     @commands.command(aliases=["p"])
     async def plak(self, ctx, *, url):
         channel = ctx.author.voice
+        global loop_flag
+        global setlist
         if channel is None:
             return await ctx.send("❌You have to be in a voice channel to use this command.")
         else:
             if ctx.voice_client:
                 pass
             else:
+                loop_flag = False
+                setlist = []
                 await ctx.author.voice.channel.connect()
                 await ctx.send(f":thumbsup: **Joined `{ctx.voice_client.channel.name}` and bound to #{ctx.channel.name}**")
 
-        global setlist
         setlist.append(url)
         await ctx.send(f":musical_note: Searching :mag_right: {url}")
 
