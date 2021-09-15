@@ -175,10 +175,6 @@ class Music(commands.Cog):
             if ctx.voice_client:
                 pass
             else:
-                global loop_flag
-                global setlist
-                loop_flag = False
-                setlist = []
                 await ctx.author.voice.channel.connect()
                 await ctx.send(f":thumbsup: **Joined `{ctx.voice_client.channel.name}` and bound to #{ctx.channel.name}**")
 
