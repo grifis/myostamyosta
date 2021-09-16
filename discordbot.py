@@ -69,7 +69,7 @@ card = [
 ]
 
 setlist_dic = {}
-loop_flag = False
+loop_flag_dic = {}
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 
@@ -157,18 +157,19 @@ class Music(commands.Cog):
 
     @commands.command()
     async def loop(self, ctx):
-        global loop_flag
-        if loop_flag:
-            loop_flag = False
+        global loop_flag_dic
+        guild_id = ctx.guild.id
+        if loop_flag_dic[guild_id]:
+            loop_flag_dic[guild_id] = False
             await ctx.send("🔂 **Disabled!**")
         else:
-            loop_flag = True
+            loop_flag_dic[guild_id] = True
             await ctx.send("🔂 **Enabled!**")
-        return loop_flag
+        return loop_flag_dic[guild_id]
 
     @commands.command(aliases=["p"])
     async def plak(self, ctx, *, url):
-        global loop_flag
+        global loop_flag_dic
         global setlist_dic
         guild_id = ctx.guild.id
         channel = ctx.author.voice
@@ -178,7 +179,7 @@ class Music(commands.Cog):
             if ctx.voice_client:
                 pass
             else:
-                loop_flag = False
+                loop_flag_dic[guild_id] = False
                 setlist_dic[guild_id] = []
                 await ctx.author.voice.channel.connect()
                 await ctx.send(f":thumbsup: **Joined `{ctx.voice_client.channel.name}` and bound to #{ctx.channel.name}**")
@@ -192,7 +193,7 @@ class Music(commands.Cog):
             while 1:
                 while ctx.voice_client.is_playing():
                     await asyncio.sleep(0.5)
-                if loop_flag:
+                if loop_flag_dic[guild_id]:
                     setlist_dic[guild_id].insert(0, music)
                 music = setlist_dic[guild_id].pop(0)
                 async with ctx.typing():
