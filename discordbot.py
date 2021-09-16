@@ -205,7 +205,7 @@ class Music(commands.Cog):
                 async with ctx.typing():
                     player = await YTDLSource.from_url(music, loop=self.bot.loop, stream=True)
                     if player.time <3600:
-                        player = await YTDLSource.from_url(url, loop=self.bot.loop)
+                        player = await YTDLSource.from_url(music, loop=self.bot.loop)
                     ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
                 await ctx.send('Playing :notes: {} - Now!'.format(player.title))
             await ctx.send(setlist_dic[guild_id])
