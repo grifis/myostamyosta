@@ -142,6 +142,10 @@ class Music(commands.Cog):
         await ctx.send('Now playing: {}'.format(player.title))
     @commands.command(aliases=["fs", "s"])
     async def skip(self, ctx):
+        global music
+        guild_id = ctx.guild.id
+        if loop_flag_dic[guild_id]:
+            music = setlist_dic[guild_id].pop(0)
         await ctx.send(":fast_forward: Skipped :thumbsup:")
         await ctx.voice_client.pause()
 
@@ -171,6 +175,7 @@ class Music(commands.Cog):
     async def plak(self, ctx, *, url):
         global loop_flag_dic
         global setlist_dic
+        global music
         guild_id = ctx.guild.id
         channel = ctx.author.voice
         if channel is None:
