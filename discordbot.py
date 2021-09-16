@@ -103,6 +103,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
         self.title = data.get('title')
         self.url = data.get('url')
+        self.time = data.get('duration')
 
     @classmethod
     async def from_url(cls, url, *, loop=None, stream=False):
@@ -202,7 +203,9 @@ class Music(commands.Cog):
                     setlist_dic[guild_id].insert(0, music)
                 music = setlist_dic[guild_id].pop(0)
                 async with ctx.typing():
-                    player = await YTDLSource.from_url(music, loop=self.bot.loop)
+                    player = await YTDLSource.from_url(music, loop=self.bot.loop, stream=True)
+                    if player.time <3600:
+                        player = await YTDLSource.from_url(url, loop=self.bot.loop)
                     ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
                 await ctx.send('Playing :notes: {} - Now!'.format(player.title))
             await ctx.send(setlist_dic[guild_id])
