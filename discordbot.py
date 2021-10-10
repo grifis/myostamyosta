@@ -70,6 +70,7 @@ card = [
 
 setlist_dic = {}
 loop_flag_dic = {}
+now_music = {}
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 
@@ -176,7 +177,7 @@ class Music(commands.Cog):
     async def plak(self, ctx, *, url):
         global loop_flag_dic
         global setlist_dic
-        global music
+        global now_music
         guild_id = ctx.guild.id
         channel = ctx.author.voice
         if channel is None:
@@ -200,12 +201,12 @@ class Music(commands.Cog):
                 while ctx.voice_client.is_playing():
                     await asyncio.sleep(0.5)
                 if loop_flag_dic[guild_id]:
-                    setlist_dic[guild_id].insert(0, music)
-                music = setlist_dic[guild_id].pop(0)
+                    setlist_dic[guild_id].insert(0, now_music[guild_id])
+                now_music[guild_id] = setlist_dic[guild_id].pop(0)
                 async with ctx.typing():
-                    player = await YTDLSource.from_url(music, loop=self.bot.loop, stream=True)
+                    player = await YTDLSource.from_url(now_music[guild_id], loop=self.bot.loop, stream=True)
                     if player.time <3600:
-                        player = await YTDLSource.from_url(music, loop=self.bot.loop)
+                        player = await YTDLSource.from_url(now_music[guild_id], loop=self.bot.loop)
                     ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
                 await ctx.send('Playing :notes: {} - Now!'.format(player.title))
             await ctx.send(setlist_dic[guild_id])
