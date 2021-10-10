@@ -157,7 +157,13 @@ class Music(commands.Cog):
 
     @commands.command(aliases=["q"])
     async def queue(self, ctx):
+        guild_id = ctx.guild.id
         await ctx.send(setlist_dic[guild_id])
+
+    @commands.command(aliases=["np"])
+    async def nowplaying(self, ctx):
+        guild_id = ctx.guild_id
+        await ctx.send(now_music[guild_id])
 
     @commands.command()
     async def loop(self, ctx):
