@@ -144,10 +144,10 @@ class Music(commands.Cog):
         await ctx.send('Now playing: {}'.format(player.title))
     @commands.command(aliases=["fs", "s"])
     async def skip(self, ctx):
-        global music
+        global now_music
         guild_id = ctx.guild.id
         if loop_flag_dic[guild_id]:
-            music = setlist_dic[guild_id].pop(0)
+            now_music[guild_id] = setlist_dic[guild_id].pop(0)
         await ctx.send(":fast_forward: Skipped :thumbsup:")
         await ctx.voice_client.pause()
 
