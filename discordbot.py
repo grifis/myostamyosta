@@ -162,7 +162,7 @@ class Music(commands.Cog):
 
     @commands.command(aliases=["np"])
     async def nowplaying(self, ctx):
-        guild_id = ctx.guild_id
+        guild_id = ctx.guild.id
         await ctx.send(now_music[guild_id])
 
     @commands.command()
