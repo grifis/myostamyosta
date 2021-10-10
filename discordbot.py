@@ -155,10 +155,8 @@ class Music(commands.Cog):
     async def start(self, ctx):
         await ctx.voice_client.resume()
 
-    @commands.command()
-    async def list(self, ctx, *, url):
-        global setlist
-        setlist.append(url)
+    @commands.command(aliases=["q"])
+    async def queue(self, ctx):
         await ctx.send(setlist_dic[guild_id])
 
     @commands.command()
