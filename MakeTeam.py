@@ -12,7 +12,7 @@ class MakeTeam:
         if state is None:
             return False
 
-        self.channel_mem = [i.name for i in state.channel.members if not i == User.bot] # VCメンバリスト取得
+        self.channel_mem = [i.name for i in state.channel.members if not i == discord.User.bot] # VCメンバリスト取得
         self.mem_len = len(self.channel_mem) # 人数取得
         return True
 
