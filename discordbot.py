@@ -67,6 +67,10 @@ card = [
 	"近距離","遠距離","連続","周囲","回復","ガード","強化","弱体化","移動","設置","その他"
 ]
 
+custum_list = [
+    "『攻撃あるのみ』\nこのバトルでは【近】【遠】【周】【連】のカードのみを使うことができます。回復（始龍系含む）やダメージカット等、その他のカードは一切使用禁止です。",
+    "特殊ルール『attacker's party』\nこのバトルではアタッカーのみで行われます。カードは自由に積むことができます。"
+]
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -78,7 +82,10 @@ async def on_command_error(ctx, error):
 async def on_ready():
 	print("on_ready")
 
-
+@bot.command(aliases=['c'])
+async def cus(ctx):
+    rule = random.choice(custum_list)
+    await ctx.send(rule)
 
 @bot.command()
 async def batu(ctx):
