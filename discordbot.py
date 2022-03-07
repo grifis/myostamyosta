@@ -106,11 +106,11 @@ async def on_ready():
 @bot.command()
 async def 別ゲー(ctx):
     embed = discord.Embed(tetle='遊びたいゲームにリアクションをしてね♪', description="", color=discord.Color.green())
-    for i in range(another_games):
+    for i in range(len(another_games)):
         embed.description = embed.description + list_vote[i] + "  " + another_games[i] + "\n"
 
     voting_msg = await ctx.send(embed=embed)
-    for i in range(another_games):
+    for i in range(len(another_games)):
         await voting_msg.add_reaction(list_vote[i])
     return 
 
