@@ -89,6 +89,10 @@ custum_list = [
     "『ドキッ！凍死だらけの氷柱大会！』\nこのバトルはアダムのみを使用することができ、攻撃倍率5倍、防御倍率0.5倍、ライフ倍率0.5で行われます。攻撃はHA(氷柱タメ攻撃)のみ、カード、通常攻撃は禁止です。"
 ]
 
+list_vote = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣']
+
+another_games = ['God Field', 'お絵描きしりとり', '大富豪', 'みんなで早押しクイズ']
+
 @bot.event
 async def on_command_error(ctx, error):
     orig_error = getattr(error, "original", error)
@@ -98,6 +102,17 @@ async def on_command_error(ctx, error):
 @bot.event
 async def on_ready():
 	print("on_ready")
+
+@bot.command()
+async def 別ゲー(ctx):
+    embed = discord.Embed(tetle='遊びたいゲームにリアクションをしてね♪', description="", color=discord.Color.green())
+    for i in range(another_games):
+        embed.description = embed.description + list_vote[i] + "  " + another_games[i] + "\n"
+
+    voting_msg = await ctx.send(embed=embed)
+    for i in range(another_games):
+        await voting_msg.add_reaction(list_vote[i])
+    return 
 
 @bot.command(aliases=['c'])
 async def cus(ctx):
