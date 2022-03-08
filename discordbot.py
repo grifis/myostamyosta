@@ -103,6 +103,10 @@ async def on_command_error(ctx, error):
 async def on_ready():
 	print("on_ready")
 
+@bot.slash_command(guild_ids=[768826990445723678])
+async def ping(ctx):
+    await ctx.respond('pong')
+
 @bot.command()
 async def 別ゲー(ctx):
     embed = discord.Embed(title='遊びたいゲームにリアクションをしてね♪', description="", color=discord.Color.green())
