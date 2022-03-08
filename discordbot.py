@@ -13,8 +13,7 @@ import re
 
 intents = discord.Intents.default()
 intents.members = True
-bot = commands.Bot(command_prefix='/', intents=intents)
-sla = discord.Bot()
+bot = discord.Bot()
 token = os.environ['DISCORD_BOT_TOKEN']
 embed = discord.Embed()
 embed.color = discord.Color.blue()
@@ -105,7 +104,7 @@ async def on_command_error(ctx, error):
 async def on_ready():
 	print("on_ready")
 
-@sla.slash_command(guild_ids=[797413972969783316])
+@bot.slash_command(guild_ids=[797413972969783316])
 async def ping(ctx):
     await ctx.responsd('pong')
 
