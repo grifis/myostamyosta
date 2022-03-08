@@ -13,7 +13,7 @@ import re
 
 intents = discord.Intents.default()
 intents.members = True
-bot = discord.Bot(command_prefix='/', intents=intents)
+bot = commands.Bot(command_prefix='/', intents=intents)
 token = os.environ['DISCORD_BOT_TOKEN']
 embed = discord.Embed()
 embed.color = discord.Color.blue()
