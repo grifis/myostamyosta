@@ -13,7 +13,8 @@ import re
 
 intents = discord.Intents.default()
 intents.members = True
-bot = discord.Bot()
+bot = commands.Bot(command_prefix='/', intents=intents)
+sla = discord.Bot()
 token = os.environ['DISCORD_BOT_TOKEN']
 embed = discord.Embed()
 embed.color = discord.Color.blue()
@@ -104,9 +105,9 @@ async def on_command_error(ctx, error):
 async def on_ready():
 	print("on_ready")
 
-@bot.slash_command(guild_ids=[797413972969783316])
+@sla.slash_command(guild_ids=[797413972969783316])
 async def ping(ctx):
-    await ctx.responsd('pong')
+    await ctx.respond('pong')
 
 @bot.command()
 async def 別ゲー(ctx):
