@@ -105,7 +105,7 @@ async def on_ready():
 
 @bot.command()
 async def 別ゲー(ctx):
-    embed = discord.Embed(tetle='遊びたいゲームにリアクションをしてね♪', description="", color=discord.Color.green())
+    embed = discord.Embed(title='遊びたいゲームにリアクションをしてね♪', description="", color=discord.Color.green())
     for i in range(len(another_games)):
         embed.description = embed.description + list_vote[i] + "  " + another_games[i] + "\n"
 
