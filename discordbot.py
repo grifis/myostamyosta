@@ -429,11 +429,15 @@ async def on_message(message):
                 pattern = r'<:emoji_9:936968342823112705>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
-                    text = re.sub(rf'<:emoji_9:936968342823112705>', f'じもいわぁぁ、', text)
+                    text = re.sub(rf'<:emoji_9:936968342823112705>', f'じもいわぁぁぁ、', text)
                 pattern = r'<:niko:936098021085700096>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
-                    text = re.sub(rf'<:niko:936098021085700096>', f'、ぴえん、', text)
+                    text = re.sub(rf'<:niko:936098021085700096>', f'ぴえん', text)
+                pattern = r'<:[a-zA-Z0-9_]+:[0-9]+>'
+                match = re.findall(pattern, text)
+                for emoji_name in match:
+                    text = re.sub(rf'<:emoji_13:936968454865584149>', f'固定いく...?', text)
                 pattern = r'<:[a-zA-Z0-9_]+:[0-9]+>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
