@@ -430,26 +430,47 @@ async def on_message(message):
                 match = re.findall(pattern, text)
                 for emoji_name in match:
                     text = re.sub(rf'<:emoji_9:936968342823112705>', f'じもいわぁぁぁ、', text)
+
                 pattern = r'<:niko:936098021085700096>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
                     text = re.sub(rf'<:niko:936098021085700096>', f'ぴえん', text)
+
                 pattern = r'<:emoji_13:936968454865584149>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
                     text = re.sub(rf'<:emoji_13:936968454865584149>', f'固定いく?', text)
+
                 pattern = r'<:age:936968361504571462>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
                     text = re.sub(rf'<:age:936968361504571462>', f'ワラ', text)
+
                 pattern = r'<:emoji_8:936968294278250606>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
                     text = re.sub(rf'<:emoji_8:936968294278250606>', f'プンスカ', text)
+
                 pattern = r'<:agekappa:956543816050028574>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
-                    text = re.sub(rf'<:agekappa:956543816050028574>', f'アゲカッパ', text)
+                    text = re.sub(rf'<:agekappa:956543816050028574>', f'アゲカッパ', text)Z
+
+                pattern = r'<:emoji_4:936098759937491045>'
+                match = re.findall(pattern, text)
+                for emoji_name in match:
+                    text = re.sub(rf'<:emoji_4:936098759937491045>', f'にっこぉぉ', text)
+
+                pattern = r'<:emoji_6:936968255246053406>'
+                match = re.findall(pattern, text)
+                for emoji_name in match:
+                    text = re.sub(rf'<:emoji_6:936968255246053406>', f'紅茶いれてくる！', text)
+
+                pattern = r'<:ha:936092299056775189>'
+                match = re.findall(pattern, text)
+                for emoji_name in match:
+                    text = re.sub(rf'<:ha:936092299056775189>', f'はぁぁ？', text)
+
                 pattern = r'<:[a-zA-Z0-9_]+:[0-9]+>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
