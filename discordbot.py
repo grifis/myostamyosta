@@ -426,6 +426,10 @@ async def on_message(message):
                 for emoji_name in match:
                     emoji_read_name = emoji_name.replace('_', ' ')
                     text = re.sub(rf'<:{emoji_name}:\d+>', f'、{emoji_read_name}、', text)
+                pattern = r'<:emoji_9:936968342823112705>'
+                match = re.findall(pattern, text)
+                for emoji_name in match:
+                    text = re.sub(rf'<:emoji_9:936968342823112705>', f'じもいわぁぁ、', text)
                 pattern = r'<:niko:936098021085700096>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
