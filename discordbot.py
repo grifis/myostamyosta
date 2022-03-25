@@ -446,6 +446,10 @@ async def on_message(message):
                 match = re.findall(pattern, text)
                 for emoji_name in match:
                     text = re.sub(rf'<:emoji_8:936968294278250606>', f'プンスカ', text)
+                pattern = r'<:agekappa:956543816050028574>'
+                match = re.findall(pattern, text)
+                for emoji_name in match:
+                    text = re.sub(rf'<:agekappa:956543816050028574>', f'アゲカッパ', text)
                 pattern = r'<:[a-zA-Z0-9_]+:[0-9]+>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
