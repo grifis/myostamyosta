@@ -409,7 +409,7 @@ async def dc(ctx):
 async def on_message(message):
     guild_id = message.guild.id
     if message.channel.id == channel_id.get(guild_id):
-        if message.content.startswith("/"):
+        if message.content.startswith("$"):
             pass
         else:
             if message.guild.voice_client:
