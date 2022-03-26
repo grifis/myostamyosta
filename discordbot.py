@@ -481,10 +481,16 @@ async def on_message(message):
                 for emoji_name in match:
                     text = re.sub(rf'<:emoji_7:936968271377342474>', f'じゃがん', text)
 
-                pattern = r'<:[a-zA-Z0-9_]+:[0-9]+>'
+                pattern = r'<:emoji_7:936968271377342474>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
-                    text = re.sub(rf'<:[a-zA-Z0-9_]+:[0-9]+>', f'、あげさん、', text)
+                    text = re.sub(rf'<:emoji_7:936968271377342474>', f'じゃがん', text)
+
+                pattern = r'<:emoji_14:957262262798782555>'
+                match = re.findall(pattern, text)
+                for emoji_name in match:
+                    text = re.sub(rf'<:emoji_14:957262262798782555>', f'スプをちょうだいいたす', text)
+
                 pattern = r'https://tenor.com/view/[\w/:%#\$&\?\(\)~\.=\+\-]+'
                 text = re.sub(pattern, '画像', text)
                 pattern = r'https?://[\w/:%#\$&\?\(\)~\.=\+\-]+(\.jpg|\.jpeg|\.gif|\.png|\.bmp)'
