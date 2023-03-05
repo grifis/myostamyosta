@@ -55,7 +55,8 @@ character = [
 	"ヴィオレッタ","コクリコ","リュウ","春麗","マリア","アダム","１３","勇者","エミリア","レム","カイ","メグメグ","リン","レン","イスタカ","ザクレイ",
 	"きらら","モノクマ","ポロロッチョ","デルミン","トマス","猫宮","オカリン","レイヤ","セイバーオルタ","英雄王ギルガメッシュ","ルルカ","ピエール","佐藤四郎兵衛忠信",
 	"アイズ・ヴァレンシュタイン","狐ヶ崎甘色","ノクティス","ニーズヘッグ","中島敦","芥川龍之介","ゲームバズーカガール","リヴァイ","ライザリン・シュタウト","青春アリス",
-    "ジョーカー","イグニス＝ウィル＝ウィスプ","アインズ・ウール・ゴウン", "糸廻 輪廻","キリト","アスナ","Bugdoll"
+    "ジョーカー","イグニス＝ウィル＝ウィスプ","アインズ・ウール・ゴウン", "糸廻 輪廻","キリト","アスナ","Bugdoll","ステリア・ララ・シルワ","ラム","2B","ラヴィ・シュシュマルシュ",
+    "リムル=テンペスト","アル・ダハブ=アルカティア","御坂 美琴","アクセラレータ","天空王 ぶれいずどらごん"
 ]
 
 attacker = [
@@ -113,7 +114,7 @@ async def 別ゲー(ctx):
     voting_msg = await ctx.send(embed=embed)
     for i in range(len(another_games)):
         await voting_msg.add_reaction(list_vote[i])
-    return 
+    return
 
 @bot.command(aliases=['c'])
 async def cus(ctx):
@@ -122,7 +123,7 @@ async def cus(ctx):
 
 @bot.command()
 async def batu(ctx):
-    if ctx.author.voice: 
+    if ctx.author.voice:
         if ctx.author.voice.self_mute:
             embed.clear_fields()
             hero = random.choice(batugame_kikisen)
@@ -135,7 +136,7 @@ async def batu(ctx):
             embed.title = f"{ctx.author.name}"
             embed.description = f"{hero}"
             await ctx.send(embed=embed)
-    else: 
+    else:
         await ctx.send("ボイスチャンネルに入ってからコマンドを打ってね")
 
 @bot.command()
@@ -435,6 +436,11 @@ async def on_message(message):
                 match = re.findall(pattern, text)
                 for emoji_name in match:
                     text = re.sub(rf'<:niko:936098021085700096>', f'ぴえん', text)
+
+                pattern = r'<:emoji_3:1077879495245189160> '
+                match = re.findall(pattern, text)
+                for emoji_name in match:
+                    text = re.sub(rf'<:niko:936098021085700096>', f'解散！！', text)
 
                 pattern = r'<:emoji_13:936968454865584149>'
                 match = re.findall(pattern, text)
