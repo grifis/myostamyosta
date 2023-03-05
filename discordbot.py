@@ -377,7 +377,7 @@ async def group(ctx, specified_num=1):
     await ctx.channel.send(msg)
 
 
-@bot.command()
+@bot.command(aliases=['st'])
 async def s(ctx):
     global channel_id
     guild_id = ctx.guild.id
@@ -501,6 +501,16 @@ async def on_message(message):
                 match = re.findall(pattern, text)
                 for emoji_name in match:
                     text = re.sub(rf'<:emoji_7:1079235001373171784>', f'あ〜い〜が〜、い〜ちば〜ん、あ〜い〜ふ〜る〜', text)
+
+                pattern = r'<:emoji_15:1079235217094623294>'
+                match = re.findall(pattern, text)
+                for emoji_name in match:
+                    text = re.sub(rf'<:emoji_15:1079235217094623294>', f'すごく晴れてるよね', text)
+
+                pattern = r'<:emoji_8:1079235021556170874>'
+                match = re.findall(pattern, text)
+                for emoji_name in match:
+                    text = re.sub(rf'<:emoji_8:1079235021556170874>', f'アインズシ', text)
 
                 pattern = r'<:[a-zA-Z0-9_]+:[0-9]+>'
                 match = re.findall(pattern, text)
