@@ -440,7 +440,7 @@ async def on_message(message):
                 pattern = r'<:emoji_3:1077879495245189160>'
                 match = re.findall(pattern, text)
                 for emoji_name in match:
-                    text = re.sub(rf'<:niko:936098021085700096>', f'解散！！', text)
+                    text = re.sub(rf'<:emoji_3:1077879495245189160>', f'解散！！', text)
 
                 pattern = r'<:emoji_13:936968454865584149>'
                 match = re.findall(pattern, text)
